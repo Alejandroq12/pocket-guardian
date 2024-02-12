@@ -8,7 +8,8 @@
 
 ### 02 - Add GitHub Actions
 - In the root directory, create the folder `.github`, then inside create the folder `workflows` and paste the following:
-  ```yml
+
+```yml
   name: Linters
 
 on: pull_request
@@ -53,7 +54,7 @@ jobs:
       - name: Check node_modules existence
         run: |
           if [ -d "node_modules/" ]; then echo -e "\e[1;31mThe node_modules/ folder was pushed to the repo. Please remove it from the GitHub repository and try again."; echo -e "\e[1;32mYou can set up a .gitignore file with this folder included on it to prevent this from happening in the future." && exit 1; fi
-  ```
+```
 
 ### 03 - Set Up Linters
 
@@ -74,7 +75,7 @@ node_modules/
 - Copy `.rubocop.yml` to the root directory of your project.
 - Paste this code inside `rubocop.yml`
   
-  ```yml
+```yml
   AllCops:
   NewCops: enable
   Exclude:
@@ -135,7 +136,7 @@ Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
   Enabled: false
-  ```
+```
 
 - Run `rubocop` to check for linter errors and fix them.
 
@@ -146,7 +147,8 @@ Style/HashTransformValues:
   ```
 - Copy `.stylelintrc.json` to the root directory of your project.
 - Paste the following inside `.stylelintrc.json`:
-  ```json
+
+```json
 {
   "extends": ["stylelint-config-standard"],
   "plugins": ["stylelint-scss", "stylelint-csstree-validator"],
@@ -179,7 +181,7 @@ Style/HashTransformValues:
   },
   "ignoreFiles": ["build/**", "dist/**", "**/reset*.css", "**/bootstrap*.css"]
 }
-  ```
+```
 
 **Important**: Do not make changes in config files as they represent style guidelines shared with your team, which includes all Microverse students. If you think a change is necessary, open a Pull Request in the repository and inform your code reviewer.
 
