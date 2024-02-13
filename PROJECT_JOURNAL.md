@@ -188,4 +188,85 @@ Style/HashTransformValues:
 - Run `npx stylelint "**/*.{css,scss}"` at the root of your project directory to check for linter errors and fix them.
 
 ### 04 - Model Creation
-Proceed to create the models according to the Entity Relationship Diagram.
+Proceed to create the models according to the Entity Relationship Diagram (ERD).
+![Entity Relationship Diagram](erd.png)
+
+#### User Model Creation
+Command to generate the User model:
+```
+rails g model User name:string
+```
+In the User model, it is specified that a user may have many groups. The `dependent: :destroy` option ensures data integrity by removing orphan groups when the user associated with those groups is deleted. Similarly, it is defined that a user may have many movements, with the foreign key set as `author_id`, and uses `dependent: :destroy` to prevent orphaned data.
+```ruby
+class User < ApplicationRecord
+  has_many :groups, dependent: :destroy
+  has_many :movements, foreign_key: 'author_id', dependent: :destroy
+end
+```
+The migration for the User model only includes the addition of a name attribute as a string:
+```ruby
+class CreateUsers < ActiveRecord::Migration[7.1]
+  def change
+    create_table :users do |t|
+      t.string :name
+
+      t.timestamps
+    end
+  end
+end
+```
+
+#### Group Model Creation
+Command to generate the Group model:
+```
+rails g model Group name:string icon:string user:references
+```
+In the Group model, it is indicated that a group belongs to a user and may have many movements. The `dependent: :destroy` option is used here as well to assure data integrity.
+```ruby
+class Group < ApplicationRecord
+  belongs_to :user
+  has_many :movements, dependent: :destroy
+end
+```
+The migration for the Group model specifies the name and icon as strings, and includes a foreign key to the user table, which cannot be null:
+```ruby
+class CreateGroups < ActiveRecord::Migration[7.1]
+  def change
+    create_table :groups do |t|
+      t.string :name
+      t.string :icon
+      t.references :user, null: false, foreign_key: true
+
+      t.timestamps
+    end
+  end
+end
+```
+
+#### Movement Model Creation
+Command to generate the Movement model:
+```
+rails g model Movement name:string amount:decimal author:references group:references
+```
+The Movement model specifies that a movement may belong to an author of the class User, with the foreign key set as `author_id`. It also establishes that a movement belongs to a group.
+```ruby
+class Movement < ApplicationRecord
+  belongs_to :author, class_name: 'User', foreign_key: 'author_id'
+  belongs_to :group
+end
+```
+In the migration for the Movement model, it is ensured that the foreign key for the author references the users table, maintaining alignment with the ERD:
+```ruby
+class CreateMovements < ActiveRecord::Migration[7.1]
+  def change
+    create_table :movements do |t|
+      t.string :name
+      t.decimal :amount
+      t.references :author, null: false, foreign_key: { to_table: :users }
+      t.references :group, null: false, foreign_key: true
+
+      t.timestamps
+    end
+  end
+end
+```
