@@ -270,3 +270,43 @@ class CreateMovements < ActiveRecord::Migration[7.1]
   end
 end
 ```
+### 04 - Model validations
+
+#### User model validations
+I added validation for the name to make sure that it is present, that its length is between 3 and 65 characters:
+
+```ruby
+class User < ApplicationRecord
+  validates name, presence: true, length: { minimun: 3, maximum: 65 }
+
+  has_many :groups, dependent: :destroy
+  has_many :movements, foreign_key: 'author_id', dependent: :destroy
+end
+```
+#### Group model validations
+I added validation for the name to make sure that it is present, that its length is between 3 and 65 characters:
+
+```ruby
+class Group < ApplicationRecord
+  validates :name, presence: true, length: { minimum: 3, maximum: 65 }
+  validates :icon, presence: true
+  belongs_to :user
+  has_many :movements, dependent: :destroy
+end
+```
+
+#### Group movements validations
+I added validation for the name to make sure that it is present, that its length is between 3 and 65 characters. I validated yhe amount to make sure it is present, that it is a number, that it is greater than zero and it has a maximum length of ten. Also, I validated that user_id and group_id must be present:
+
+```ruby
+class Movement < ApplicationRecord
+  validates :name, presence: true, length: { minimum: 3, maximum: 65 }
+  validates :amount, presence: true, numericality: { greater_than: 0 }, length: { maximum: 10 }
+  validates :user_id, presence: true
+  validates :group_id, presence: true
+
+  belongs_to :author, class_name: 'User', foreign_key: 'author_id'
+  belongs_to :group
+end
+
+```
