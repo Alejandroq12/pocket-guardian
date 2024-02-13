@@ -208,7 +208,7 @@ The migration for the User model only includes the addition of a name attribute 
 class CreateUsers < ActiveRecord::Migration[7.1]
   def change
     create_table :users do |t|
-      t.string :name
+      t.string :name, null: false
 
       t.timestamps
     end
@@ -261,7 +261,7 @@ class CreateMovements < ActiveRecord::Migration[7.1]
   def change
     create_table :movements do |t|
       t.string :name
-      t.decimal :amount
+      t.decimal :amount, precision: 10, scale: 2
       t.references :author, null: false, foreign_key: { to_table: :users }
       t.references :group, null: false, foreign_key: true
 
@@ -277,11 +277,12 @@ I added validation for the name to make sure that it is present, that its length
 
 ```ruby
 class User < ApplicationRecord
-  validates name, presence: true, length: { minimun: 3, maximum: 65 }
+  validates :name, presence: true, length: { minimum: 3, maximum: 65 }
 
   has_many :groups, dependent: :destroy
   has_many :movements, foreign_key: 'author_id', dependent: :destroy
 end
+
 ```
 #### Group model validations
 I added validation for the name to make sure that it is present, that its length is between 3 and 65 characters:
@@ -301,8 +302,7 @@ I added validation for the name to make sure that it is present, that its length
 ```ruby
 class Movement < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3, maximum: 65 }
-  validates :amount, presence: true, numericality: { greater_than: 0 }, length: { maximum: 10 }
-  validates :user_id, presence: true
+  validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :group_id, presence: true
 
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
