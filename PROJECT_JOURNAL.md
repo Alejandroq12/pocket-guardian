@@ -429,7 +429,10 @@ Before running the migration, I uncommented the following lines in the migration
 t.string   :confirmation_token
 t.datetime :confirmed_at
 t.datetime :confirmation_sent_at
+t.string   :unconfirmed_email
 
+add_index :users, :email,                unique: true
+add_index :users, :reset_password_token, unique: true
 add_index :users, :confirmation_token,   unique: true
 ```
 
@@ -489,3 +492,41 @@ end
 ```
 
 This implementation not only secures the application from common web vulnerabilities but also ensures a seamless user experience by redirecting users to their intended destination post-authentication or registration.
+
+Next, I bypassed authentication for the splash page to allow unauthenticated users to view it:
+
+```ruby
+class SplashPageController < ApplicationController
+  # Skips user authentication only for the splash page
+  skip_before_action :authenticate_user!
+  def index; end
+end
+```
+
+I then enhanced the sign-up page by adding a field for the user's name with autofocus, alongside the standard email field, for a more user-friendly registration process:
+
+```erb
+<div class="field">
+  <%= f.label :name %><br />
+  <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+</div>
+
+<div class="field">
+  <%= f.label :email %><br />
+  <%= f.email_field :email, autocomplete: "email" %>
+</div>
+```
+
+Following that, I configured email confirmation functionality for both the development and test environments to streamline the user verification process without needing an external mail service during testing:
+
+1. I added the `letter_opener` gem to my Gemfile and executed `bundle install` to facilitate email previews directly in the browser.
+
+2. Then, I set up the action mailer settings in both `config/environments/development.rb` and `config/environments/test.rb` by adding:
+
+```ruby
+config.action_mailer.delivery_method = :letter_opener
+config.action_mailer.perform_deliveries = true
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+```
+
+This configuration allows for immediate feedback on email functionalities without leaving the development environment, enhancing the testing and development workflow.
