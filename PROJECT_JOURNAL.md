@@ -454,3 +454,38 @@ Finally, I added buttons to navigate to the corresponding sign-in and sign-up pa
   <%= button_to "SIGN UP", new_user_registration_path, method: :get %>
 </div>
 ```
+
+I enhanced security and user management in the application controller by adding protection against CSRF attacks, enforcing user authentication, and allowing specific permitted parameters for user registration and account updates:
+
+```ruby
+class ApplicationController < ActionController::Base
+  # Protects from Cross-Site Request Forgery (CSRF) attacks
+  protect_from_forgery with: :exception, prepend: true
+  
+  # Ensures users are authenticated before accessing any action
+  before_action :authenticate_user!
+  
+  # Configures additional parameters for user sign-up and account updates
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  # Allows custom fields (e.g., name) in addition to the default email and password
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+  end
+
+  # Redirects users to a specified path after sign-in
+  def after_sign_in_path_for(_resource)
+    authenticated_root_path
+  end
+
+  # Redirects users to a specified path after sign-up
+  def after_sign_up_path_for(_resource)
+    authenticated_root_path
+  end
+end
+```
+
+This implementation not only secures the application from common web vulnerabilities but also ensures a seamless user experience by redirecting users to their intended destination post-authentication or registration.
