@@ -310,3 +310,147 @@ class Movement < ApplicationRecord
 end
 
 ```
+
+### 05 - Authentication with Devise
+
+First, I added Devise to my Gemfile and installed it:
+
+```bash
+bundle add devise
+rails generate devise:install
+```
+
+**Correct Configuration Steps I Followed:**
+
+Correctly configure Devise:
+
+1. **Default URL Options**: 
+   I ensured default URL options were defined in my environments files. Here's what I added for the development environment in `config/environments/development.rb`:
+
+   ```ruby
+   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+   ```
+
+   For production, I knew `:host` should be set to my application's actual host.
+
+   *This step was required for all applications.*
+
+2. **Root URL Definition**: 
+   I defined `root_url` in `config/routes.rb` as follows:
+
+   ```ruby
+   root to: "home#index"
+   ```
+
+   *This was not required for API-only Applications.*
+
+In my case I used root to: 'splash_page#index' because this was aligned with my project logic.
+
+In my application setup, I configured it like this:
+
+```ruby
+Rails.application.routes.draw do
+  get "up" => "rails/health#show", as: :rails_health_check
+  authenticated :user do
+    root 'home#index', as: :authenticated_root
+  end
+  root "splash_page#index"
+end
+```
+
+This configuration was done to correctly display the splash page before authentication, effectively separating the concerns of authentication flow and content access.
+
+Then, I created the controller for the splash page:
+
+```ruby
+class SplashPageController < ApplicationController
+  def index; end
+end
+```
+
+Next, I modified the application controller to redirect the user after sign-in or sign-up:
+
+```ruby
+class ApplicationController < ActionController::Base
+  protected
+
+  def after_sign_in_path_for(_resource)
+    authenticated_root_path
+  end
+
+  def after_sign_up_path_for(_resource)
+    authenticated_root_path
+  end
+end
+```
+
+I then created the view for the splash page in `/app/views/splash_page/index.html.erb`:
+
+```erb
+<div>
+  <h1>The Pocket Guardian</h1>
+  <%= button_to "LOGIN", new_user_session_path %>
+  <%= button_to "SIGN UP", new_user_registration_path %>
+</div>
+```
+
+Next, I reset styles in the global `app/assets/application.css` file to make styling easier:
+
+```css
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+```
+
+### 3. Adding Flash Messages for Devise
+
+I integrated flash messages to display notifications for various actions, aligning with the correct Devise configuration:
+
+```erb
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+```
+
+Following this setup, I executed the command to scaffold the User model with Devise:
+
+```bash
+rails generate devise User
+```
+
+This command added the necessary Devise modules to the User model and generated the migration `add_devise_to_users`.
+
+Before running the migration, I uncommented the following lines in the migration file to add Devise to Users:
+
+```ruby
+t.string   :confirmation_token
+t.datetime :confirmed_at
+t.datetime :confirmation_sent_at
+
+add_index :users, :confirmation_token,   unique: true
+```
+
+Next, I executed the migration with:
+
+```bash
+rails db:migrate
+```
+
+And then I generated the Devise views:
+
+```bash
+rails generate devise:views
+```
+
+Finally, I added buttons to navigate to the corresponding sign-in and sign-up pages in `/views/splash_page/index.html.erb`:
+
+```erb
+<div>
+  <h1>The Pocket Guardian</h1>
+  <%= button_to "LOGIN", new_user_session_path, method: :get %>
+  <%= button_to "SIGN UP", new_user_registration_path, method: :get %>
+</div>
+```
