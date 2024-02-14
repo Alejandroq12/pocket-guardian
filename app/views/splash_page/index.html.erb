@@ -1,5 +1,5 @@
 <div>
   <h1>The Pocket Guardian</h1>
-  <%= button_to "LOGIN" %>
-  <%= button_to "SIGN UP" %>
+  <%= button_to "LOGIN", new_user_session_path, method: :get %>
+  <%= button_to "SIGN UP", new_user_registration_path, method: :get %>
 </div>
