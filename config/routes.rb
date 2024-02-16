@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+  get 'groups/index'
+  get 'groups/show'
+  get 'groups/new'
+  get 'groups/create'
+  get 'groups/edit'
+  get 'groups/update'
+  get 'groups/destroy'
+  get 'movements/index'
+  get 'movements/show'
+  get 'movements/new'
+  get 'movements/create'
+  get 'movements/edit'
+  get 'movements/update'
+  get 'movements/destroy'
+  get 'users/show'
+  get 'users/new'
+  get 'users/edit'
+  get 'users/update'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

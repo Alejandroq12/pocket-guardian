@@ -575,3 +575,16 @@ end
 ```
 
 This approach not only secures the application by enforcing authorization checks but also enhances the user experience by providing clear feedback in case of access restrictions.
+
+Now, it is time to generate controllers:
+```bash
+rails generate controller Users show new edit update
+```
+
+```bash
+rails generate controller Movements index show new create edit update destroy
+```
+
+```bash
+rails generate controller Groups index show new create edit update destroy
+```
