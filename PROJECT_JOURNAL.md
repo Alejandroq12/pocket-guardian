@@ -530,3 +530,50 @@ config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 ```
 
 This configuration allows for immediate feedback on email functionalities without leaving the development environment, enhancing the testing and development workflow.
+
+I integrated CanCanCan for role-based authorization by first adding it to the Gemfile:
+
+```ruby
+gem 'cancancan'
+```
+
+Subsequently, I executed `bundle install` to ensure the gem was properly installed in my project environment.
+
+Following the installation, I generated the `Ability` model to define user permissions using the command:
+
+```bash
+rails g cancan:ability
+```
+
+Within the `Ability` class, I specified authorization rules allowing users to both read and manage their movements and groups, effectively implementing role-based access control:
+
+```ruby
+class Ability
+  include CanCan::Ability
+
+  def initialize(user)
+    user ||= User.new # Guest user (not logged in)
+
+    if user.persisted? # Checks if user exists in the database
+      can :read, Movement, user_id: user.id
+      can :manage, Movement, user_id: user.id
+      can :read, Group, user_id: user.id
+      can :manage, Group, user_id: user.id
+    end
+  end
+end
+```
+
+To handle exceptions and provide feedback for unauthorized access attempts, I added error handling in the `ApplicationController`. This ensures that users receive appropriate notifications and are redirected accordingly when attempting to access restricted resources:
+
+```ruby
+rescue_from CanCan::AccessDenied do |exception|
+  respond_to do |format|
+    format.json { head :forbidden, content_type: 'text/html' }
+    format.html { redirect_to main_app.root_url, alert: exception.message }
+    format.js { head :forbidden, content_type: 'text/html' }
+  end
+end
+```
+
+This approach not only secures the application by enforcing authorization checks but also enhances the user experience by providing clear feedback in case of access restrictions.
