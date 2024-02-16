@@ -4,7 +4,7 @@ ruby '3.2.2'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
-gem 'cancancan'
+gem 'cancancan', '~> 3.5.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.3'
