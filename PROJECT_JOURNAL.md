@@ -576,7 +576,8 @@ end
 
 This approach not only secures the application by enforcing authorization checks but also enhances the user experience by providing clear feedback in case of access restrictions.
 
-Now, it is time to generate controllers:
+Now, it was time to generate the necessary controllers for my application. This step is crucial for defining the actions and views associated with each model:
+
 ```bash
 rails generate controller Users show new edit update
 ```
@@ -588,3 +589,35 @@ rails generate controller Movements index show new create edit update destroy
 ```bash
 rails generate controller Groups index show new create edit update destroy
 ```
+
+With the controllers in place, I proceeded to add the routes to prepare the app for the forthcoming steps. This involved setting up nested resources and ensuring that the URL structure reflects the hierarchical relationship between users, groups, and movements:
+
+```ruby
+Rails.application.routes.draw do
+  devise_for :users
+
+  # Routes for nested resources, facilitating the association between users, groups, and movements
+  resources :users, only: [] do
+    resources :groups, only: [:new, :show, :create] do
+      resources :movements, only: [:new, :show, :create]
+    end
+  end
+
+  # Uncommented to further refine the routes for groups and movements, allowing for editing, updating, and destroying
+  # resources :groups, only: [:edit, :update, :destroy]
+  # resources :movements, only: [:edit, :update, :destroy]
+
+  # Defines the root path for authenticated users, leading them directly to their groups
+  authenticated :user do
+    root 'groups#index', as: :authenticated_root
+  end
+
+  # The default root path directs unauthenticated users to the splash page
+  root "splash_page#index"
+
+  # A health check route useful for deployment and monitoring
+  get "up" => "rails/health#show", as: :rails_health_check
+end
+```
+
+This routing configuration not only clarifies the application's navigational structure but also aligns with RESTful principles, ensuring a clear and intuitive user experience. The commented-out routes are placeholders for future enhancements, indicating planned expansions to the app's functionality.
