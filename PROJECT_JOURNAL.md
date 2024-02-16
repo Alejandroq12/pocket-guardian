@@ -552,14 +552,12 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new # Guest user (not logged in)
+    user ||= User.new
 
-    if user.persisted? # Checks if user exists in the database
-      can :read, Movement, user_id: user.id
-      can :manage, Movement, user_id: user.id
-      can :read, Group, user_id: user.id
-      can :manage, Group, user_id: user.id
-    end
+    return unless user.persisted?
+
+    can :manage, Movement, user_id: user.id
+    can :manage, Group, user_id: user.id
   end
 end
 ```
@@ -569,9 +567,9 @@ To handle exceptions and provide feedback for unauthorized access attempts, I ad
 ```ruby
 rescue_from CanCan::AccessDenied do |exception|
   respond_to do |format|
-    format.json { head :forbidden, content_type: 'text/html' }
+    format.json { head :forbidden, content_type: 'application/json' }
     format.html { redirect_to main_app.root_url, alert: exception.message }
-    format.js { head :forbidden, content_type: 'text/html' }
+    format.js { head :forbidden, content_type: 'application/javascript' }
   end
 end
 ```
