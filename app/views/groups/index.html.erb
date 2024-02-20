@@ -1,2 +1,22 @@
-<h1>Groups#index</h1>
-<p>Find me in app/views/groups/index.html.erb</p>
+<h1>The Pocket Guardian</h1>
+<p>Groups</p>
+
+<% if @groups.empty? %>
+  <p>There are no groups.</p>
+  <%= link_to "Add a group", new_user_group_path(current_user), class: "button" %>
+<% else %>
+  <% @groups.each do |group| %>
+    <!-- Display each group infromation here  -->
+    <div>
+      <%= image_tag("group_icons/#{group.icon}", alt: group.name, class: "icon-preview") %>
+      <p><%= group.created_at %></p>
+      <p><%= group.name %></p>
+      <p><%= "Change later for real total amount in dollars" %></p>
+      <%= button_to "Delete",  user_group_path(current_user, group), method: :delete %>
+    </div>
+    <div>
+      <%= link_to "Add a group", new_user_group_path(current_user), class: "button" %>
+      <%= link_to "New movement", new_user_group_movement_path(current_user, group)%>
+    </div>
+  <% end %>
+<% end %>

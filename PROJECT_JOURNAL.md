@@ -621,3 +621,47 @@ end
 ```
 
 This routing configuration not only clarifies the application's navigational structure but also aligns with RESTful principles, ensuring a clear and intuitive user experience. The commented-out routes are placeholders for future enhancements, indicating planned expansions to the app's functionality.
+
+Next, I will add the destroy actions for Movements and Groups
+```ruby
+Rails.application.routes.draw do
+  devise_for :users
+
+  # get 'users/edit/:id', to: 'users#edit', as: :edit_user
+
+  resources :users, only: [] do
+    resources :groups, only: [:new, :show, :create, :destroy] do
+      resources :movements, only: [:new, :show, :create, :destroy]
+    end
+  end
+
+  # resources :groups, only: [:edit, :update, :destroy]
+  # recources :movements, only: [:edit, :update, :destroy]
+
+  authenticated :user do
+    root 'groups#index', as: :authenticated_root
+  end
+
+  root "splash_page#index"
+
+  get "up" => "rails/health#show", as: :rails_health_check
+end
+```
+
+Next, I added the images in assets/images/group_images as svg. These are the icons that I will use later on.
+
+Next I added a validation to check if the icons are present and I added a class method to get the name of the icons which I will use on the views with the help method image_tag to display the icons.
+
+```ruby
+class Group < ApplicationRecord
+  validates :name, presence: true, length: { minimum: 3, maximum: 65 }
+  validates :icon, presence: true, inclusion: { in: proc { Group.icon_choices } }
+
+  belongs_to :user
+  has_many :movements, dependent: :destroy
+
+  def self.icon_choices
+    Dir.glob('app/assets/images/group_icons/*').map { |file| File.basename(file) }
+  end
+end
+```

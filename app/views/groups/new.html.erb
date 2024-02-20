@@ -1,2 +1,20 @@
-<h1>Groups#new</h1>
-<p>Find me in app/views/groups/new.html.erb</p>
+
+<%= form_with(model: [current_user, @group], local: true) do |form| %>
+  <h1>Add a new group</h1>
+
+  <div>
+    <h2>Choose an icon</h2>
+    <% Group.icon_choices.each do |icon| %>
+      <%= form.radio_button :icon, icon%>
+      <%= label :icon, icon, value: icon %>
+      <%= image_tag("group_icons/#{icon}", alt: icon, class: "icon-preview") %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :name, "Group name" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <%= form.submit "Create group" %>
+<% end %>
