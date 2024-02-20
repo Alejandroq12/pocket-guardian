@@ -10,8 +10,3 @@ class Group < ApplicationRecord
     Dir.glob('app/assets/images/group_icons/*').map { |file| File.basename(file) }
   end
 end
-
-class Group < ApplicationRecord
-  validates :name, presence: true, length: { minimum: 3, maximum: 65 }
-  validates :icon, presence: true, inclusion: { in: proc { Group.icon_choices } }
-end
