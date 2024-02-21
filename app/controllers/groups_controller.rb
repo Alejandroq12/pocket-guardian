@@ -3,7 +3,10 @@ class GroupsController < ApplicationController
     @groups = Group.all
   end
 
-  def show; end
+  def show
+    @group = current_user.groups.find(params[:id])
+    @movements = @group.movements.order(created_at: :desc)
+  end
 
   def new
     @group = current_user.groups.build
