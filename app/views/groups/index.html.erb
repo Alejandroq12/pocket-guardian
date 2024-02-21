@@ -6,12 +6,14 @@
   <%= link_to "Add a group", new_user_group_path(current_user), class: "button" %>
 <% else %>
   <% @groups.each do |group| %>
-    <!-- Display each group infromation here  -->
+    <!-- Display each group information here  -->
     <div>
-      <%= image_tag("group_icons/#{group.icon}", alt: group.name, class: "icon-preview") %>
-      <p><%= group.created_at %></p>
-      <p><%= group.name %></p>
-      <p><%= "Change later for real total amount in dollars" %></p>
+      <%= link_to user_group_path(current_user, group) do %>
+        <%= image_tag("group_icons/#{group.icon}", alt: group.name, class: "icon-preview") %>
+        <p><%= group.created_at %></p>
+        <p><%= group.name %></p>
+        <p><%= "Change later for real total amount in dollars" %></p>
+      <% end %>
       <%= button_to "Delete",  user_group_path(current_user, group), method: :delete %>
     </div>
     <div>
