@@ -761,3 +761,44 @@ I updated the groups index page to first check if there are any groups. If there
   <% end %>
 <% end %>
 ```
+
+I refined the group's show action in the controller to retrieve the specific group associated with the current user and to display its movements ordered from the most recent:
+
+```ruby
+  def show
+    @group = current_user.groups.find(params[:id])
+    @movements = @group.movements.order(created_at: :desc)
+  end
+```
+
+In the groups index view, I added functionality to display the total sum of the transactions for each group:
+
+```erb
+  <p><%= group.movements.sum(:amount) %></p>
+```
+For the group show view, I enhanced the usability and presentation. A 'Go back' button was implemented to provide easy navigation back to the home page. The group's associated icon and name are prominently displayed. Additionally, if there are movements, the total sum of the transactions is shown. I also prepared an iteration structure for future development, where each movement will be displayed. Finally, a link was added for creating new movements, anticipating the next development phase:
+
+```erb
+<div>
+  <%= link_to "Go back", authenticated_root_path %>
+  <%= image_tag("group_icons/#{@group.icon}", alt: @group.icon, class: "icon-preview") %>
+  <h1><%= @group.name %> movements </h1>
+  <% if @movements.empty? %>
+    <p>There are no movements, yet.</p>
+  <% else %>
+    <%= @movements.sum(:amount)%>
+    <div>
+      <%= @movements.each do |movement| %>
+      <!-- Display each movement here -->
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to "Add a new movement", new_user_group_movement_path(current_user, @group) %>
+</div>
+```
+
+I added a "Go back" button for the Group new view:
+
+```erb
+  <%= link_to  "Go back", authenticated_root_path%>
+```
