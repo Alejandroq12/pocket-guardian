@@ -7,5 +7,7 @@ class Group < ApplicationRecord
 
   def self.icon_choices
     Dir.glob('app/assets/images/group_icons/*').map { |file| File.basename(file) }
+  rescue StandardError => e
+    Rails.logger.error "Failed to load icons: #{e.message}"
   end
 end
