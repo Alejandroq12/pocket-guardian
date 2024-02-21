@@ -797,8 +797,110 @@ For the group show view, I enhanced the usability and presentation. A 'Go back' 
 </div>
 ```
 
-I added a "Go back" button for the Group new view:
+I enhanced the Group new view by adding a "Go back" button for improved navigation:
 
 ```erb
   <%= link_to  "Go back", authenticated_root_path%>
+```
+
+In the Movements controller, I incorporated the new, create, and destroy actions. Additionally, I defined a private method to specify the permitted parameters for creating a Movement:
+
+
+```ruby
+class MovementsController < ApplicationController
+  def index; end
+
+  def show; end
+
+  def new
+    @group = current_user.groups.find(params[:group_id])
+    @movement = @group.movements.build
+  end
+
+  def create
+    @group = current_user.groups.find(params[:group_id])
+    @movement = @group.movements.build(movement_params)
+    @movement.author_id = current_user.id
+    if @movement.save
+      redirect_to user_group_path(current_user, @group), notice: 'Movement created sucessfully'
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit; end
+
+  def update; end
+
+  def destroy
+    @group = current_user.groups.find(params[:group_id])
+    @movement = @group.movements.find(params[:id])
+    @movement.destroy
+    redirect_to user_group_path(current_user, @group)
+  end
+
+  private
+
+  def movement_params
+    params.require(:movement).permit(:name, :amount)
+  end
+end
+```
+
+I also added a button to delete movements with a confirmation dialog in the group show view:
+
+```erb
+<div>
+  <%= link_to "Go back", authenticated_root_path %>
+  <%= image_tag("group_icons/#{@group.icon}", alt: @group.icon, class: "icon-preview") %>
+  <h1><%= @group.name %> movements </h1>
+  <% if @movements.empty? %>
+    <p>There are no movements, yet.</p>
+  <% else %>
+    <%= @movements.sum(:amount)%>
+    <div>
+      <% @movements.each do |movement| %>
+        <p><%= movement.name %></p>
+        <p><%= movement.created_at %></p>
+        <p>$<%= movement.amount %></p>
+        <%= button_to "Delete movement", user_group_movement_path(current_user, @group, movement), method: :delete,
+                       data: { turbo_confirm: "Are you sure you want to delete this movement?" },
+                       aria: { label: "Delete #{movement.name}" } %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to "Add a new movement", new_user_group_movement_path(current_user, @group) %>
+</div>
+```
+
+ I crafted a new movement view where users can create a new instance of the movement class, associated with the current user and a group:
+ 
+```erb
+<div>
+  <% if @movement.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
+    <ul>
+    <% @movement.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <h1>Add a new movement</h1>
+  <%= form_with(model: @movement, url: user_group_movements_path(current_user, @group), local: true) do |form| %>
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div>
+      <%= form.label :amount %>
+      <%= form.number_field :amount %>
+    </div>
+      <%= form.submit "Add a movement" %>
+  <% end %>
+  <%= link_to "Go back", user_group_path(current_user, @group) %>
+</div>
 ```
