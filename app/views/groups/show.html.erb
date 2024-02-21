@@ -7,8 +7,13 @@
   <% else %>
     <%= @movements.sum(:amount)%>
     <div>
-      <%= @movements.each do |movement| %>
-      <!-- Display each movement here -->
+      <% @movements.each do |movement| %>
+        <p><%= movement.name %></p>
+        <p><%= movement.created_at %></p>
+        <p>$<%= movement.amount %></p>
+        <%= button_to "Delete movement", user_group_movement_path(current_user, @group, movement), method: :delete,
+                       data: { turbo_confirm: "Are you sure you want to delete this movement?" },
+                       aria: { label: "Delete #{movement.name}" } %>
       <% end %>
     </div>
   <% end %>
