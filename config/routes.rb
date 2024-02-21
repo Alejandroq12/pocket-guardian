@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # get 'users/edit/:id', to: 'users#edit', as: :edit_user
 
   resources :users, only: [] do
-    resources :groups, only: [:new, :show, :create] do
-      resources :movements, only: [:new, :show, :create]
+    resources :groups, only: [:new, :show, :create, :destroy] do
+      resources :movements, only: [:new, :show, :create, :destroy]
     end
   end
 

@@ -621,3 +621,143 @@ end
 ```
 
 This routing configuration not only clarifies the application's navigational structure but also aligns with RESTful principles, ensuring a clear and intuitive user experience. The commented-out routes are placeholders for future enhancements, indicating planned expansions to the app's functionality.
+
+Next, I will add the destroy actions for Movements and Groups
+```ruby
+Rails.application.routes.draw do
+  devise_for :users
+
+  # get 'users/edit/:id', to: 'users#edit', as: :edit_user
+
+  resources :users, only: [] do
+    resources :groups, only: [:new, :show, :create, :destroy] do
+      resources :movements, only: [:new, :show, :create, :destroy]
+    end
+  end
+
+  # resources :groups, only: [:edit, :update, :destroy]
+  # recources :movements, only: [:edit, :update, :destroy]
+
+  authenticated :user do
+    root 'groups#index', as: :authenticated_root
+  end
+
+  root "splash_page#index"
+
+  get "up" => "rails/health#show", as: :rails_health_check
+end
+```
+
+Next, I added the images in `app/assets/images/group_icons` as SVG files. These are the icons that will be used in the group creation form.
+
+I then updated the `Group` model to include validations for the presence of an icon and to ensure the icon selected is from the available choices. I also added a class method to retrieve the filenames of the icons, which will be used in the views with the `image_tag` helper to display them.
+
+
+```ruby
+class Group < ApplicationRecord
+  validates :name, presence: true, length: { minimum: 3, maximum: 65 }
+  validates :icon, presence: true, inclusion: { in: proc { Group.icon_choices } }
+
+  belongs_to :user
+  has_many :movements, dependent: :destroy
+
+  def self.icon_choices
+    Dir.glob('app/assets/images/group_icons/*').map { |file| File.basename(file) }
+  end
+end
+```
+
+I updated the `GroupsController` to handle the creation of new groups associated with the current user:
+```ruby
+class GroupsController < ApplicationController
+  def index
+    @groups = Group.all
+  end
+
+  def show; end
+
+  def new
+    @group = current_user.groups.build
+  end
+
+  def create
+    @group = current_user.groups.build(group_params)
+    if @group.save
+      redirect_to user_groups_path(current_user), notice: 'Group was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit; end
+
+  def update; end
+
+  def destroy; end
+
+  private
+
+  def group_params
+    params.require(:group).permit(:name, :icon)
+  end
+end
+```
+
+In the new group form, I iterated over each available icon, associating each with a radio button and label. This allows users to select an icon visually:
+
+
+```ruby
+<%= form_with(model: [current_user, @group], local: true) do |form| %>
+  <h1>Add a new group</h1>
+
+  <div>
+    <h2>Choose an icon</h2>
+    <% Group.icon_choices.each do |icon| %>
+      <%= form.radio_button :icon, icon%>
+      <%= label :icon, icon, value: icon %>
+      <%= image_tag("group_icons/#{icon}", alt: icon, class: "icon-preview") %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :name, "Group name" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <%= form.submit "Create group" %>
+<% end %>
+```
+I added CSS to ensure the icons are displayed at a manageable size within the form:
+
+```css
+.icon-preview {
+  width: 40px;
+}
+```
+
+I updated the groups index page to first check if there are any groups. If there are no groups, the text "There are no groups" is displayed, along with a link to add a new group. If there are groups, their details are shown, along with a button to delete each group. Clicking on a group redirects the user to that group's show view.
+
+```ruby
+<h1>The Pocket Guardian</h1>
+<p>Groups</p>
+
+<% if @groups.empty %>
+  <p>There are no groups</p>
+  <%= link_to "Add a group", new_user_group_path(current_user), class: "button" %>
+<% else %>
+  <% @groups.each do |group| %>
+  <div>
+    <%= link_to user_group_path(current_user, group) %>
+      <%= image_tag("group_icons/#{group.name}", alt: group.name, class: "button") %>
+      <p><%= group.created_at %></p>
+      <p><%= group.name %></p>
+      <p><%= "Change later for real total amount in dollars" %></p>
+    <% end %>
+    <%= button_to "Delete", user_group_path(current_user, group), method: :delete %>
+  </div>
+  
+  <div>
+  </div>
+  <% end %>
+<% end %>
+```
