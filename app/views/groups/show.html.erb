@@ -2,9 +2,7 @@
   <%= link_to "Go back", authenticated_root_path %>
   <%= image_tag("group_icons/#{@group.icon}", alt: @group.icon, class: "icon-preview") %>
   <h1><%= @group.name %> movements </h1>
-  <% if @movements.empty? %>
-    <p>There are no movements, yet.</p>
-  <% else %>
+  <% if @movements.load.any? %>
     <%= @movements.sum(:amount)%>
     <div>
       <% @movements.each do |movement| %>
@@ -16,6 +14,8 @@
                        aria: { label: "Delete #{movement.name}" } %>
       <% end %>
     </div>
+  <% else %>
+    <p>There are no movements, yet.</p>
   <% end %>
   <%= link_to "Add a new movement", new_user_group_movement_path(current_user, @group) %>
 </div>
