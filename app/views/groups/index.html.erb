@@ -1,7 +1,7 @@
 <h1>The Pocket Guardian</h1>
 <p>Groups</p>
 
-<% if @groups.load.any? %>
+<% if @groups.any? %>
  <% @groups.each do |group| %>
     <!-- Display each group information here  -->
     <div>

@@ -2,7 +2,7 @@
   <%= link_to "Go back", authenticated_root_path %>
   <%= image_tag("group_icons/#{@group.icon}", alt: @group.icon, class: "icon-preview") %>
   <h1><%= @group.name %> movements </h1>
-  <% if @movements.load.any? %>
+  <% if @movements.any? %>
     <%= @movements.sum(:amount)%>
     <div>
       <% @movements.each do |movement| %>
