@@ -1,18 +1,15 @@
 <h1>The Pocket Guardian</h1>
 <p>Groups</p>
 
-<% if @groups.empty? %>
-  <p>There are no groups.</p>
-  <%= link_to "Add a group", new_user_group_path(current_user), class: "button" %>
-<% else %>
-  <% @groups.each do |group| %>
+<% if @groups.load.any? %>
+ <% @groups.each do |group| %>
     <!-- Display each group information here  -->
     <div>
       <%= link_to user_group_path(current_user, group) do %>
         <%= image_tag("group_icons/#{group.icon}", alt: group.name, class: "icon-preview") %>
         <p><%= group.created_at %></p>
         <p><%= group.name %></p>
-        <p><%= group.movements.sum(:amount) %></p>
+        <p><%= group.movements_sum %></p>
       <% end %>
       <%= button_to "Delete",  user_group_path(current_user, group), method: :delete %>
     </div>
@@ -21,4 +18,9 @@
       <%= link_to "New movement", new_user_group_movement_path(current_user, group)%>
     </div>
   <% end %>
+<% else %>
+   <p>There are no groups.</p>
+  <%= link_to "Add a group", new_user_group_path(current_user), class: "button" %>
 <% end %>
+
+
