@@ -1,2 +1,27 @@
-<h1>Movements#new</h1>
-<p>Find me in app/views/movements/new.html.erb</p>
+<div>
+  <% if @movement.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
+    <ul>
+    <% @movement.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <h1>Add a new movement</h1>
+  <%= form_with(model: @movement, url: user_group_movements_path(current_user, @group), local: true) do |form| %>
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div>
+      <%= form.label :amount %>
+      <%= form.number_field :amount %>
+    </div>
+      <%= form.submit "Add a movement" %>
+  <% end %>
+  <%= link_to "Go back", user_group_path(current_user, @group) %>
+</div>
