@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   def index
-    # @groups = Group.all
-    @groups = Group
+    # @groups = current_user.groups
+    @groups = current_user.groups
       .select('groups.*, COALESCE(SUM(movements.amount), 0) as movements_sum')
       .left_joins(:movements)
       .group('groups.id')
