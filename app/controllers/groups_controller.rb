@@ -1,6 +1,10 @@
 class GroupsController < ApplicationController
   def index
-    @groups = Group.all
+    # @groups = Group.all
+    @groups = Group
+      .select('groups.*, COALESCE(SUM(movements.amount), 0) as movements_sum')
+      .left_joins(:movements)
+      .group('groups.id')
   end
 
   def show
@@ -25,7 +29,11 @@ class GroupsController < ApplicationController
 
   def update; end
 
-  def destroy; end
+  def destroy
+    @group = current_user.groups.find(params[:id])
+    @group.destroy
+    redirect_to authenticated_root_path, notice: 'Group was sucessfuly deleted'
+  end
 
   private
 
