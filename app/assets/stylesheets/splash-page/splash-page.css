@@ -4,10 +4,12 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding: 15px;
  }
  
  .splash_page__container {
    margin: 0 auto;
+   max-width: 600px;
    width: 100%;
    text-align: center;
  }
@@ -16,48 +18,40 @@
    color: var(--gray-text-color);
    margin-bottom: 230px;
    margin-top: 230px;
+   font-size: calc(var(--font-size-base) + 12px);
  }
  
  .splash_page__buttons {
    display: block;
    justify-content: center;
    align-items: center;
-   margin: 0 auto;
+   flex-direction: column;
  }
  
- .splash_page__login-button {
+ .splash_page__login-button,
+ .splash_page__signup-button {
    display: block;
-   margin: 0 auto 15px;
+   margin: 10px auto;
    color: var(--white-text-color);
    background-color: var(--blue-main-color);
    border: 2px solid var(--blue-main-color);
    padding: 10px 20px;
-   width: 85%;
+   width: 100%;
    border-radius: 4px;
    text-align: center;
    text-decoration: none;
+   transition: all 0.3s ease;
  }
- 
- .splash_page__login-button:hover {
-   cursor: pointer;
-   font-weight: bold;
-   border: 2px solid var(--green-second-color);
- }
- 
- .spash_page__signup-button {
-   display: block;
-   margin: 0 auto;
-   color: var(--gray-text-color);
-   border: 2px solid transparent;
-   padding: 10px 20px;
-   width: 85%;
-   text-align: center;
-   text-decoration: none;
- }
- 
- .spash_page__signup-button:hover {
-   cursor: pointer;
-   font-weight: bold;
-   border: 2px solid var(--green-second-color);
 
+ .splash_page__signup-button {
+  color: var(--gray-text-color);
+  background-color: transparent;
+  border: 2px solid transparent;
+}
+ 
+ .splash_page__login-button:hover,
+ .splash_page__signup-button:hover {
+   cursor: pointer;
+   font-weight: bold;
+   border: 2px solid var(--green-second-color);
  }
