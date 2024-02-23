@@ -904,3 +904,141 @@ I also added a button to delete movements with a confirmation dialog in the grou
   <%= link_to "Go back", user_group_path(current_user, @group) %>
 </div>
 ```
+
+I installed and configured the Bullet gem to enhance performance and detect N+1 query issues in the development and test environments. I added the Bullet gem to the Gemfile and executed `bundle install`.
+
+```Gemfile
+group :development do
+  gem 'bullet'
+```
+
+I configured Bullet in `config/environments/development.rb` to notify me about potential inefficiencies:
+
+```ruby
+  config.after_initialize do
+    Bullet.enable        = true
+    Bullet.alert         = true
+    Bullet.bullet_logger = true
+    Bullet.console       = true
+    Bullet.rails_logger  = true
+    Bullet.add_footer    = true
+    Bullet.unused_eager_loading_enable = true
+    Bullet.n_plus_one_query_enable     = true
+  end
+```
+
+Similarly, I set up Bullet in `config/environments/test.rb` to raise errors for N+1 queries, ensuring optimal performance:
+
+```ruby
+  config.after_initialize do
+    Bullet.enable        = true
+    Bullet.bullet_logger = true
+    Bullet.raise         = true # raise an error if n+1 query occurs
+    Bullet.unused_eager_loading_enable = true
+    Bullet.n_plus_one_query_enable     = true
+  end
+```
+
+In the group show view, I improved memory usage by replacing `@movements.empty?` with `@movements.any?` to check for the presence of movements:
+
+```erb
+<div>
+  <%= link_to "Go back", authenticated_root_path %>
+  <%= image_tag("group_icons/#{@group.icon}", alt: @group.icon, class: "icon-preview") %>
+  <h1><%= @group.name %> movements </h1>
+  <% if @movements.any? %>
+    <%= @movements.sum(:amount)%>
+    <div>
+      <% @movements.each do |movement| %>
+        <p><%= movement.name %></p>
+        <p><%= movement.created_at %></p>
+        <p>$<%= movement.amount %></p>
+        <%= button_to "Delete movement", user_group_movement_path(current_user, @group, movement), method: :delete,
+                       data: { turbo_confirm: "Are you sure you want to delete this movement?" },
+                       aria: { label: "Delete #{movement.name}" } %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>There are no movements, yet.</p>
+  <% end %>
+  <%= link_to "Add a new movement", new_user_group_movement_path(current_user, @group) %>
+</div>
+```
+
+For the groups index view, I optimized memory usage by using `@groups.any?` and implementing a precalculated sum of movements' transactions using a raw SQL query:
+
+```erb
+<h1>The Pocket Guardian</h1>
+<p>Groups</p>
+
+<% if @groups.any? %>
+ <% @groups.each do |group| %>
+    <!-- Display each group information here  -->
+    <div>
+      <%= link_to user_group_path(current_user, group) do %>
+        <%= image_tag("group_icons/#{group.icon}", alt: group.name, class: "icon-preview") %>
+        <p><%= group.created_at %></p>
+        <p><%= group.name %></p>
+        <p><%= group.movements_sum %></p>
+      <% end %>
+      <%= button_to "Delete",  user_group_path(current_user, group), method: :delete %>
+    </div>
+    <div>
+      <%= link_to "Add a group", new_user_group_path(current_user), class: "button" %>
+      <%= link_to "New movement", new_user_group_movement_path(current_user, group)%>
+    </div>
+  <% end %>
+<% else %>
+   <p>There are no groups.</p>
+  <%= link_to "Add a group", new_user_group_path(current_user), class: "button" %>
+<% end %>
+
+```
+
+In the Groups controller, I added the destroy action to allow deletion of groups and implemented a raw SQL query to fetch data more efficiently, thereby avoiding multiple queries:
+
+```ruby
+class GroupsController < ApplicationController
+  def index
+    # @groups = Group.all
+    @groups = Group
+      .select('groups.*, COALESCE(SUM(movements.amount), 0) as movements_sum')
+      .left_joins(:movements)
+      .group('groups.id')
+  end
+
+  def show
+    @group = current_user.groups.find(params[:id])
+    @movements = @group.movements.order(created_at: :desc)
+  end
+
+  def new
+    @group = current_user.groups.build
+  end
+
+  def create
+    @group = current_user.groups.build(group_params)
+    if @group.save
+      redirect_to user_groups_path(current_user), notice: 'Group was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit; end
+
+  def update; end
+
+  def destroy
+    @group = current_user.groups.find(params[:id])
+    @group.destroy
+    redirect_to authenticated_root_path, notice: 'Group was sucessfuly deleted'
+  end
+
+  private
+
+  def group_params
+    params.require(:group).permit(:name, :icon)
+  end
+end
+```
