@@ -1,5 +1,9 @@
-<div>
-  <h1>The Pocket Guardian</h1>
-  <%= button_to "LOGIN", new_user_session_path, method: :get %>
-  <%= button_to "SIGN UP", new_user_registration_path, method: :get %>
+<div class="container splash_page">
+  <div class="splash_page__container">
+    <h1 class="title splash_page__title">The Pocket Guardian</h1>
+    <div class="buttons splash_page__buttons">
+      <%= button_to "LOG IN", new_user_session_path, method: :get, class: "button splash_page__login-button" %>
+      <%= button_to "SIGN UP", new_user_registration_path, method: :get, class: "button spash_page__signup-button" %>
+    </div>
+  </div>
 </div>
