@@ -16,15 +16,13 @@
 
 .login_page__title {
   color: var(--gray-text-color);
-  text-align: center;
-  font-size: calc(var(--font-size-base) + 13px);
-  margin: 16px 0;
+  font-size: calc(var(--font-size-base) + 18px);
+  margin: 18px 0;
 }
 
 .login_page__form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -35,7 +33,6 @@
 
 .login_form__field_email--field,
 .login_form__field_password--field {
-  text-orientation: initial;
   padding: 16px 17px;
   width: 100%;
   border: none;
@@ -54,13 +51,18 @@
   background-color: var(--blue-main-color);
   border: 2px solid var(--blue-main-color);
   color: var(--white-text-color);
-  width: 140px;
+  font-size: calc(var(--font-size-base) + 1px);
+  width: auto;
+  min-width: 140px;
   border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
 .login_form__submit--button:hover {
   cursor: pointer;
   font-weight: bold;
+  background-color: var(--white-text-color);
+  color: var(--blue-main-color); 
   border: 2px solid var(--green-second-color);
 }
 
@@ -69,6 +71,7 @@
   color: var(--gray-text-color);
   display: inline-block;
   margin: 8px 0;
+  transition: color 0.3s;
 }
 
 .login_page__shared_link--login:hover,
