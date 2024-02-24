@@ -1042,3 +1042,214 @@ class GroupsController < ApplicationController
   end
 end
 ```
+
+I added CSS classes following BEM convention to the splash page view, I also added semantic HTML and improved accesibility:
+
+```erb
+<div class="container splash_page">
+  <section class="splash_page__container">
+    <h1 class="title splash_page__title" tabindex="0" >The Pocket Guardian</h1>
+    <div class="buttons splash_page__buttons" role="navigation" aria-lable="Primary">
+      <%= link_to "LOG IN", new_user_session_path, method: :get, class: "button splash_page__login-button", role: "button", aria_label: "Log in to your acount", tab_index: '1' %>
+      <%= link_to "SIGN UP", new_user_registration_path, method: :get, class: "button splash_page__signup-button", role: "buton", aria_label: "Sign up for a new account", tab_index: '2' %>
+    </div>
+  </section>
+</div>
+```
+
+I added styles to the splash page: 
+```css
+.splash_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 15px;
+}
+
+.splash_page__container {
+  margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.splash_page__title {
+  color: var(--gray-text-color);
+  margin-bottom: 230px;
+  margin-top: 230px;
+  font-size: calc(var(--font-size-base) + 14px);
+}
+
+.splash_page__buttons {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.splash_page__login-button,
+.splash_page__signup-button {
+  display: block;
+  margin: 10px auto;
+  color: var(--white-text-color);
+  background-color: var(--blue-main-color);
+  border: 2px solid var(--blue-main-color);
+  padding: 17px 25px;
+  width: 100%;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.splash_page__signup-button {
+  color: var(--gray-text-color);
+  background-color: transparent;
+  border: 2px solid transparent;
+}
+
+.splash_page__login-button:hover,
+.splash_page__signup-button:hover {
+  cursor: pointer;
+  font-weight: bold;
+  border: 2px solid var(--green-second-color);
+}
+
+```
+
+I added some global styles in application.css:
+```css
+:root {
+  --gray-background-color: rgb(235, 235, 235);
+  --blue-main-color: #3778c2;
+  --green-second-color: #5fb523;
+  --gray-text-color: #434b54;
+  --white-text-color: #ffffff;
+  --black-color: #000000;
+  --font-size-base: 16px;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: proxima-nova, sans-serif;
+}
+
+body {
+  background-color: var(--gray-background-color);
+}
+
+.icon-preview {
+  width: 40px;
+}
+```
+
+I added some media queries to the splash page:
+
+```css
+
+@media (min-width: 361px) {
+  .splash_page__title {
+    font-size: calc(var(--font-size-base) + 16px);
+  }
+}
+
+@media (min-width: 481px) {
+  .splash_page__title {
+    font-size: calc(var(--font-size-base) + 20px);
+  }
+
+  .splash_page__login-button,
+  .splash_page__signup-button {
+    width: 95%;
+    padding: 19px 24px;
+    font-size: calc(var(--font-size-base) + 1px);
+  }
+}
+
+@media (min-width: 600px) {
+  .splash_page__title {
+    font-size: calc(var(--font-size-base) + 24px);
+  }
+
+  .splash_page__login-button,
+  .splash_page__signup-button {
+    width: 90%;
+    padding: 21px 26px;
+    font-size: calc(var(--font-size-base) + 2px);
+  }
+}
+
+@media (min-width: 769px) {
+  .splash_page {
+    padding: 60px;
+  }
+
+  .splash_page__title {
+    font-size: calc(var(--font-size-base) + 34px);
+  }
+
+  .splash_page__login-button,
+  .splash_page__signup-button {
+    width: 80%;
+    padding: 22px 27px;
+    font-size: calc(var(--font-size-base) + 3px);
+  }
+}
+
+@media (min-width: 992px) {
+  .splash_page__container {
+    max-width: 750px;
+  }
+
+  .splash_page__title {
+    font-size: calc(var(--font-size-base) + 43px);
+  }
+
+  .splash_page__login-button,
+  .splash_page__signup-button {
+    width: 70%;
+    padding: 23px 28px;
+    font-size: calc(var(--font-size-base) + 4px);
+  }
+}
+
+@media (min-width: 1400px) {
+  .splash_page__container {
+    max-width: 1100px;
+  }
+
+  .splash_page__title {
+    font-size: calc(var(--font-size-base) + 50px);
+  }
+
+  .splash_page__login-button,
+  .splash_page__signup-button {
+    width: 50%;
+    padding: 25px 29px;
+    font-size: calc(var(--font-size-base) + 5px);
+  }
+}
+
+@media (min-width: 1600px) {
+  .splash_page__container {
+    max-width: 1300px;
+  }
+
+  .splash_page__title {
+    font-size: calc(var(--font-size-base) + 68px);
+  }
+
+  .splash_page__login-button,
+  .splash_page__signup-button {
+    width: 48%;
+    padding: 26px 31px;
+    font-size: calc(var(--font-size-base) + 6px);
+  }
+}
+
+```
