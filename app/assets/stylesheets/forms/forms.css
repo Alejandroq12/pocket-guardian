@@ -81,3 +81,163 @@
 .login_page__shared_link--unlock:hover {
   color: var(--black-color);
 }
+
+/* Media queries */
+@media (min-width: 361px) {
+  .login_form__field_email--field,
+  .login_form__field_password--field {
+    padding: 17px 18px;
+  }
+}
+
+@media (min-width: 481px) {
+  .login_page__title {
+    font-size: calc(var(--font-size-base) + 20px);
+  }
+
+  .login_form__fields--email,
+  .login_form__fields--password {
+    width: 90%;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field {
+    padding: 19px 20px;
+    font-size: calc(var(--font-size-base) + 3px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 1px);
+  }
+
+  .login_form__submit--button {
+    font-size: calc(var(--font-size-base) + 2px);
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 1px);
+  }
+}
+
+@media (min-width: 600px) {
+  .login_page__title {
+    font-size: calc(var(--font-size-base) + 23px);
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field {
+    font-size: calc(var(--font-size-base) + 4px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 2px);
+  }
+
+  .login_form__submit--button {
+    padding: 14px 21px;
+    font-size: calc(var(--font-size-base) + 3px);
+    min-width: 142px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 2px);
+  }
+}
+
+@media (min-width: 769px) {
+  .login_page__title {
+    font-size: calc(var(--font-size-base) + 22px);
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field {
+    font-size: calc(var(--font-size-base) + 5px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 3px);
+  }
+
+  .login_form__submit--button {
+    padding: 14px 21px;
+    font-size: calc(var(--font-size-base) + 4px);
+    min-width: 146px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 3px);
+  }
+}
+
+@media (min-width: 992px) {
+  .login_page__title {
+    font-size: calc(var(--font-size-base) + 23px);
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field {
+    font-size: calc(var(--font-size-base) + 7px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 4px);
+  }
+
+  .login_form__submit--button {
+    padding: 14px 21px;
+    font-size: calc(var(--font-size-base) + 5px);
+    min-width: 148px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 4px);
+  }
+}
+
+@media (min-width: 1400px) {
+  .login_page__title {
+    font-size: calc(var(--font-size-base) + 24px);
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field {
+    font-size: calc(var(--font-size-base) + 8px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 5px);
+  }
+
+  .login_form__submit--button {
+    font-size: calc(var(--font-size-base) + 6px);
+    min-width: 150px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 5px);
+  }
+}
+
+@media (min-width: 1600px) {
+  .login_page__title {
+    font-size: calc(var(--font-size-base) + 26px);
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field {
+    font-size: calc(var(--font-size-base) + 10px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 6px);
+  }
+
+  .login_form__submit--button {
+    font-size: calc(var(--font-size-base) + 7px);
+    min-width: 153px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 6px);
+  }
+}
