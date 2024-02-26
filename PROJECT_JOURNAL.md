@@ -1253,3 +1253,151 @@ I added some media queries to the splash page:
 }
 
 ```
+
+I added styles for the log in:
+```css
+/* Session - login */
+.login_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0;
+}
+
+.login_page__container {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+  width: 100%;
+}
+
+.login_page__title {
+  color: var(--gray-text-color);
+  font-size: calc(var(--font-size-base) + 18px);
+  margin: 18px 0;
+}
+
+.login_page__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login_form__fields--email,
+.login_form__fields--password {
+  width: 100%;
+}
+
+.login_form__field_email--field,
+.login_form__field_password--field {
+  padding: 16px 17px;
+  width: 100%;
+  border: none;
+  margin: 1px 0;
+}
+
+.login_form__check_box--remember {
+  margin-top: 16px;
+  margin-bottom: 12px;
+  color: var(--gray-text-color);
+}
+
+.login_form__submit--button {
+  margin: 10px 0;
+  padding: 13px 20px;
+  background-color: var(--blue-main-color);
+  border: 2px solid var(--blue-main-color);
+  color: var(--white-text-color);
+  font-size: calc(var(--font-size-base) + 1px);
+  width: auto;
+  min-width: 140px;
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.login_form__submit--button:hover {
+  cursor: pointer;
+  font-weight: bold;
+  background-color: var(--white-text-color);
+  color: var(--blue-main-color); 
+  border: 2px solid var(--green-second-color);
+}
+
+.login_page__shared_link {
+  text-decoration: none;
+  color: var(--gray-text-color);
+  display: inline-block;
+  margin: 8px 0;
+  transition: color 0.3s;
+}
+
+.login_page__shared_link--login:hover,
+.login_page__shared_link--signup:hover,
+.login_page__shared_link--forgot-password:hover,
+.login_page__shared_link--confirmation:hover,
+.login_page__shared_link--unlock:hover {
+  color: var(--black-color);
+}
+
+```
+I added class followint BEM convention to the log in form:
+```erb
+<div class="login_page">
+  <section class="login_page__container">
+    <h2 class="login_page__title">Log in</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form login_page__form' }) do |f| %>
+      <div class="field login_form__fields--email">
+        <%= f.email_field :email, placeholder: 'Email', autofocus: true, autocomplete: "email", class: 'login_form__field_email--field' %>
+      </div>
+    
+      <div class="field login_form__fields--password">
+        <%= f.password_field :password, placeholder: 'Password', autocomplete: "current-password", class: 'login_form__field_password--field' %>
+      </div>
+    
+      <% if devise_mapping.rememberable? %>
+        <div class="field login_form__check_box--remember">
+          <%= f.check_box :remember_me, class: 'login_form__check_box--box' %>
+          <%= f.label :remember_me, class: 'login_form__check_box--label' %>
+        </div>
+      <% end %>
+    
+      <div class="actions login_form__submit_button--container">
+        <%= f.submit "Log in", class: 'login_form__submit--button' %>
+      </div>
+    <% end %>
+    <div>
+      <%= render "devise/shared/links" %>
+    </div>
+  </section>
+</div>
+```
+I added classes to the sessions shared links following the BEM convention:
+```erb
+<%- if controller_name != 'sessions' %>
+  <%= link_to "Log in", new_session_path(resource_name), class: 'login_page__shared_link login_page__shared_link--login' %><br />
+<% end %>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to "Sign up", new_registration_path(resource_name), class: 'login_page__shared_link login_page__shared_link--signup' %><br />
+<% end %>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to "Forgot your password?", new_password_path(resource_name), class: 'login_page__shared_link login_page__shared_link--forgot-password' %><br />
+<% end %>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: 'login_page__shared_link login_page__shared_link--confirmation' %><br />
+<% end %>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: 'login_page__shared_link login_page__shared_link--unlock' %><br />
+<% end %>
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: 'login_page__shared_link login_page__shared_link--omniauth'  %><br />
+  <% end %>
+<% end %>
+
+```
