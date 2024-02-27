@@ -1558,5 +1558,515 @@ I added classes to the sessions shared links following the BEM convention:
     <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: 'login_page__shared_link login_page__shared_link--omniauth'  %><br />
   <% end %>
 <% end %>
+```
+
+I added classes to the sign up page following the BEM convention:
+```erb
+<div class="signup_page">
+  <div class="signup_page__container">
+    <h2 class="signup_page__title">Register</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form signup_page__form'}) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+    
+      <div class="signup_form__container">
+        <h3 class="signup_form__title--avatar">Choose an avatar: </h3>
+        <div class="signup_form__container--avatar">
+          <% User.profile_images.each_with_index do |profile_image, index| %>
+            <% radio_id = "profile_image_#{index}" %>
+            <%= f.radio_button :profile_image, profile_image, id: radio_id, class: 'signup_form__radio--button' %>
+            <%= f.label :profile_image, class: "signup_form__label--avatar", for: radio_id do %>
+              <%= image_tag("profile_images/#{profile_image}", alt: profile_image, class: "signup_form__image--avatar") %>
+            <% end %>
+          <% end %>
+          </div>
+      </div>
+    
+      <div class="field signup_form__fields--name">
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Full name", class: 'signup_form__field_name--field' %>
+      </div>
+    
+      <div class="field signup_form__fields--email">
+        <%= f.email_field :email, autocomplete: "email", placeholder: "Email", class: 'signup_form__field_email--field'  %>
+      </div>
+    
+      <div class="field signup_form__fields--password">
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password (#{@minimum_password_length} characters minimum).", class: 'signup_form__field_password--field' %>
+      </div>
+    
+      <div class="field signup_form__fields--password">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password confirmation", class: 'signup_form__field_password--field' %>
+      </div>
+    
+      <div class="actions signup_form__submit_button--container">
+        <%= f.submit "Sign up", class: 'signup_form__submit--button'  %>
+      </div>
+    <% end %>
+    
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
+```
+I added the profile_image property as a permitted parameter for sign up and edit:
+
+```ruby
+class ApplicationController < ActionController::Base
+  protect_from_forgery prepend: true
+  before_action :authenticate_user!
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { head :forbidden, content_type: 'application/json' }
+      format.html { redirect_to main_app.root_url, alert: exception.message }
+      format.js { head :forbidden, content_type: 'application/javascript' }
+    end
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name profile_image])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name profile_image])
+  end
+
+  def after_sign_in_path_for(_resource)
+    authenticated_root_path
+  end
+
+  def after_sign_up_path_for(_resource)
+    authenticated_root_path
+  end
+end
+```
+I updated the styles to avoid repetition and make the Sign up form responsive:
+```css
+/* Sessions and registrations - login and register forms */
+.login_page,
+.signup_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0;
+}
+
+.login_page__container,
+.signup_page__container {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+  width: 100%;
+}
+
+.login_page__title,
+.signup_page__title {
+  color: var(--gray-text-color);
+  font-size: calc(var(--font-size-base) + 18px);
+  margin: 18px 0;
+}
+
+.login_page__form,
+.signup_page__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login_form__fields--email,
+.login_form__fields--password,
+.signup_form__fields--name,
+.signup_form__fields--email,
+.signup_form__fields--password {
+  width: 100%;
+}
+
+.signup_form__field_name--field,
+.signup_form__field_email--field,
+.signup_form__field_password--field,
+.signup_form__field_email--field {
+  padding: 16px 17px;
+  width: 100%;
+  border: none;
+  margin: 1px 0;
+}
+
+.login_form__check_box--remember {
+  margin-top: 16px;
+  margin-bottom: 12px;
+  color: var(--gray-text-color);
+}
+
+.login_form__submit--button,
+.signup_form__submit--button {
+  margin: 10px 0;
+  padding: 13px 20px;
+  background-color: var(--blue-main-color);
+  border: 2px solid var(--blue-main-color);
+  color: var(--white-text-color);
+  font-size: calc(var(--font-size-base) + 1px);
+  width: auto;
+  min-width: 140px;
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.login_form__submit--button:hover,
+.signup_form__submit--button:hover {
+  cursor: pointer;
+  font-weight: bold;
+  background-color: var(--white-text-color);
+  color: var(--blue-main-color); 
+  border: 2px solid var(--green-second-color);
+}
+
+.login_page__shared_link {
+  text-decoration: none;
+  color: var(--gray-text-color);
+  display: inline-block;
+  margin: 8px 0;
+  transition: color 0.3s;
+}
+
+.login_page__shared_link--login:hover,
+.login_page__shared_link--signup:hover,
+.login_page__shared_link--forgot-password:hover,
+.login_page__shared_link--confirmation:hover,
+.login_page__shared_link--unlock:hover {
+  color: var(--black-color);
+}
+
+/* sign-up page*/
+
+.signup_form__container--avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  border: 1px solid var(--light-gray-text-color);
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.15);
+  background: var(--white-text-color);
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-text-color) var(--white-text-color);
+  padding: 10px;
+  max-width: 285px; 
+  width: auto;
+}
+
+/* Styles for Webkit browsers like Chrome, Safari */
+.signup_form__container--avatar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.signup_form__container--avatar::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.signup_form__container--avatar::-webkit-scrollbar-thumb {
+  background-color: var(--gray-text-color);
+  border-radius: 10px;
+  border: 2px solid var(--white-text-color);
+}
+
+.signup_form__radio--button {
+  display: none;
+}
+
+.signup_form__label--avatar {
+  display: flex;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.signup_form__label--avatar:hover {
+  transform: translateY(-2px);
+}
+
+.signup_form__image--avatar {
+  transition: border-color 0.25s ease-in-out;
+}
+
+.signup_form__image--avatar {
+  width: 45px;
+  margin: 3px;
+  padding: 1px;
+  border: 2px solid transparent;
+}
+
+.signup_form__radio--button:checked + .signup_form__label--avatar .signup_form__image--avatar {
+  border-color: var(--green-second-color);
+  transform: scale(1.1);
+}
+
+.signup_form__title--avatar {
+  color: var(--gray-text-color);
+  font-size: calc(var(--font-size-base));
+  margin: 0;
+}
+
+/* Media queries */
+@media (min-width: 361px) {
+  .login_form__field_email--field,
+  .login_form__field_password--field {
+    padding: 17px 18px;
+  }
+
+  .signup_page__title {
+    font-size: calc(var(--font-size-base) + 19px);
+    margin: 20px 0;
+  }
+}
+
+@media (min-width: 481px) {
+  .login_page__title,
+  .signup_page__title {
+    font-size: calc(var(--font-size-base) + 20px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 1px);
+    margin: 1px 0;
+  }
+
+  .signup_form__container--avatar {
+    padding: 10px;
+    max-width: 380px;
+    width: auto;
+  }
+
+  .login_form__fields--email,
+  .login_form__fields--password,
+  .signup_form__fields--name,
+  .signup_form__fields--email,
+  .signup_form__fields--password  {
+    width: 90%;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .signup_form__field_email--field {
+    padding: 19px 20px;
+    font-size: calc(var(--font-size-base) + 3px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 1px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button {
+    font-size: calc(var(--font-size-base) + 2px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button {
+    font-size: calc(var(--font-size-base) + 1px);
+  }
+}
+
+@media (min-width: 600px) {
+  .login_page__title,
+  .signup_page__title  {
+    font-size: calc(var(--font-size-base) + 23px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 2px);
+    margin-bottom: 3px;
+  }
+
+  .signup_form__container--avatar {
+    max-width: 470px;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .signup_form__field_email--field {
+    font-size: calc(var(--font-size-base) + 4px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 2px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button  {
+    padding: 14px 21px;
+    font-size: calc(var(--font-size-base) + 3px);
+    min-width: 142px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 2px);
+  }
+}
+
+@media (min-width: 769px) {
+  .login_page__title,
+  .signup_page__title {
+    font-size: calc(var(--font-size-base) + 24px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 3px);
+    margin-bottom: 4px;
+  }
+
+  .signup_form__container--avatar {
+    max-width: 500px;
+  }
+
+  .signup_form__image--avatar {
+    width: 50px;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .signup_form__field_email--field {
+    font-size: calc(var(--font-size-base) + 5px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 3px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button {
+    padding: 14px 21px;
+    font-size: calc(var(--font-size-base) + 4px);
+    min-width: 146px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 3px);
+  }
+}
+
+@media (min-width: 992px) {
+  .login_page__title,
+  .signup_page__title {
+    font-size: calc(var(--font-size-base) + 24px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 4px);
+    margin-bottom: 5px;
+  }
+
+  .signup_form__image--avatar {
+    width: 52px;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .signup_form__field_email--field {
+    font-size: calc(var(--font-size-base) + 7px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 4px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button {
+    padding: 14px 21px;
+    font-size: calc(var(--font-size-base) + 5px);
+    min-width: 148px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 4px);
+  }
+}
+
+@media (min-width: 1400px) {
+  .login_page__title,
+  .signup_page__title {
+    font-size: calc(var(--font-size-base) + 25px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 5px);
+    margin-bottom: 6px;
+  }
+
+  .signup_form__image--avatar {
+    width: 55px;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .signup_form__field_email--field {
+    font-size: calc(var(--font-size-base) + 8px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 5px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button {
+    font-size: calc(var(--font-size-base) + 6px);
+    min-width: 150px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 5px);
+  }
+}
+
+@media (min-width: 1600px) {
+  .login_page__title,
+  .signup_page__title {
+    font-size: calc(var(--font-size-base) + 26px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 6px);
+    margin-bottom: 7px;
+  }
+
+  .signup_form__image--avatar {
+    width: 56px;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .signup_form__field_email--field  {
+    font-size: calc(var(--font-size-base) + 10px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 6px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button {
+    font-size: calc(var(--font-size-base) + 7px);
+    min-width: 153px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 6px);
+  }
+}
 
 ```
