@@ -38,10 +38,11 @@
   width: 100%;
 }
 
+.login_form__field_email--field,
+.login_form__field_password--field,
 .signup_form__field_name--field,
 .signup_form__field_email--field,
-.signup_form__field_password--field,
-.signup_form__field_email--field {
+.signup_form__field_password--field {
   padding: 16px 17px;
   width: 100%;
   border: none;
@@ -73,7 +74,7 @@
   cursor: pointer;
   font-weight: bold;
   background-color: var(--white-text-color);
-  color: var(--blue-main-color); 
+  color: var(--blue-main-color);
   border: 2px solid var(--green-second-color);
 }
 
@@ -93,13 +94,7 @@
   color: var(--black-color);
 }
 
-
-
-
-
-
-
-/* Specific for sign-up page*/
+/* Specific for sign-up page */
 .signup_form__container--avatar {
   display: flex;
   justify-content: center;
@@ -107,12 +102,12 @@
   overflow-x: auto;
   border: 1px solid var(--light-gray-text-color);
   border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15);
   background: var(--white-text-color);
   scrollbar-width: thin;
   scrollbar-color: var(--gray-text-color) var(--white-text-color);
   padding: 10px;
-  max-width: 285px; 
+  max-width: 285px;
   width: auto;
 }
 
@@ -146,14 +141,11 @@
 }
 
 .signup_form__image--avatar {
-  transition: border-color 0.25s ease-in-out;
-}
-
-.signup_form__image--avatar {
   width: 45px;
   margin: 3px;
   padding: 1px;
   border: 2px solid transparent;
+  transition: border-color 0.25s ease-in-out;
 }
 
 .signup_form__radio--button:checked + .signup_form__label--avatar .signup_form__image--avatar {
@@ -201,7 +193,7 @@
   .login_form__fields--password,
   .signup_form__fields--name,
   .signup_form__fields--email,
-  .signup_form__fields--password  {
+  .signup_form__fields--password {
     width: 90%;
   }
 
@@ -209,8 +201,7 @@
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field,
-  .signup_form__field_email--field {
+  .signup_form__field_password--field {
     padding: 19px 20px;
     font-size: calc(var(--font-size-base) + 3px);
   }
@@ -221,18 +212,13 @@
 
   .login_form__submit--button,
   .signup_form__submit--button {
-    font-size: calc(var(--font-size-base) + 2px);
-  }
-
-  .login_form__submit--button,
-  .signup_form__submit--button {
     font-size: calc(var(--font-size-base) + 1px);
   }
 }
 
 @media (min-width: 600px) {
   .login_page__title,
-  .signup_page__title  {
+  .signup_page__title {
     font-size: calc(var(--font-size-base) + 23px);
   }
 
@@ -249,8 +235,7 @@
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field,
-  .signup_form__field_email--field {
+  .signup_form__field_password--field {
     font-size: calc(var(--font-size-base) + 4px);
   }
 
@@ -259,7 +244,7 @@
   }
 
   .login_form__submit--button,
-  .signup_form__submit--button  {
+  .signup_form__submit--button {
     padding: 14px 21px;
     font-size: calc(var(--font-size-base) + 3px);
     min-width: 142px;
@@ -293,8 +278,7 @@
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field,
-  .signup_form__field_email--field {
+  .signup_form__field_password--field {
     font-size: calc(var(--font-size-base) + 5px);
   }
 
@@ -333,8 +317,7 @@
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field,
-  .signup_form__field_email--field {
+  .signup_form__field_password--field {
     font-size: calc(var(--font-size-base) + 7px);
   }
 
@@ -373,8 +356,7 @@
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field,
-  .signup_form__field_email--field {
+  .signup_form__field_password--field {
     font-size: calc(var(--font-size-base) + 8px);
   }
 
@@ -412,8 +394,7 @@
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field,
-  .signup_form__field_email--field  {
+  .signup_form__field_password--field {
     font-size: calc(var(--font-size-base) + 10px);
   }
 
