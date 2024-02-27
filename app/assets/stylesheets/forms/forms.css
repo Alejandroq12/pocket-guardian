@@ -1,5 +1,6 @@
-/* Session - login */
-.login_page {
+/* Sessions and registrations - login and register forms */
+.login_page,
+.signup_page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,32 +8,40 @@
   padding: 0;
 }
 
-.login_page__container {
+.login_page__container,
+.signup_page__container {
   margin: 0 auto;
   max-width: 600px;
   text-align: center;
   width: 100%;
 }
 
-.login_page__title {
+.login_page__title,
+.signup_page__title {
   color: var(--gray-text-color);
   font-size: calc(var(--font-size-base) + 18px);
   margin: 18px 0;
 }
 
-.login_page__form {
+.login_page__form,
+.signup_page__form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .login_form__fields--email,
-.login_form__fields--password {
+.login_form__fields--password,
+.signup_form__fields--name,
+.signup_form__fields--email,
+.signup_form__fields--password {
   width: 100%;
 }
 
-.login_form__field_email--field,
-.login_form__field_password--field {
+.signup_form__field_name--field,
+.signup_form__field_email--field,
+.signup_form__field_password--field,
+.signup_form__field_email--field {
   padding: 16px 17px;
   width: 100%;
   border: none;
@@ -45,7 +54,8 @@
   color: var(--gray-text-color);
 }
 
-.login_form__submit--button {
+.login_form__submit--button,
+.signup_form__submit--button {
   margin: 10px 0;
   padding: 13px 20px;
   background-color: var(--blue-main-color);
@@ -58,7 +68,8 @@
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
-.login_form__submit--button:hover {
+.login_form__submit--button:hover,
+.signup_form__submit--button:hover {
   cursor: pointer;
   font-weight: bold;
   background-color: var(--white-text-color);
@@ -82,52 +93,72 @@
   color: var(--black-color);
 }
 
-/* sign-up page*/
-.signup_page {
+
+
+
+
+
+
+/* Specific for sign-up page*/
+.signup_form__container--avatar {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding: 0;
-}
-
-.signup_page__container {
-  margin: 0 auto;
-  max-width: 600px;
-  text-align: center;
-  width: 100%;
-}
-
-.signup_page__title {
-  color: var(--gray-text-color);
-  font-size: calc(var(--font-size-base) + 18px);
-  margin: 19px 0;
-}
-
-.signup_page__form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.signup_form__container--avatar {
-  overflow: scroll;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  border: 1px solid var(--light-gray-text-color);
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.15);
+  background: var(--white-text-color);
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-text-color) var(--white-text-color);
+  padding: 10px;
+  max-width: 285px; 
   width: auto;
-  max-width: 285px;
-  display: flex;
+}
+
+/* Styles for Webkit browsers like Chrome, Safari */
+.signup_form__container--avatar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.signup_form__container--avatar::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.signup_form__container--avatar::-webkit-scrollbar-thumb {
+  background-color: var(--gray-text-color);
+  border-radius: 10px;
+  border: 2px solid var(--white-text-color);
 }
 
 .signup_form__radio--button {
+  display: none;
 }
 
 .signup_form__label--avatar {
+  display: flex;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
 
+.signup_form__label--avatar:hover {
+  transform: translateY(-2px);
+}
+
+.signup_form__image--avatar {
+  transition: border-color 0.25s ease-in-out;
 }
 
 .signup_form__image--avatar {
   width: 45px;
   margin: 3px;
   padding: 1px;
+  border: 2px solid transparent;
+}
+
+.signup_form__radio--button:checked + .signup_form__label--avatar .signup_form__image--avatar {
+  border-color: var(--green-second-color);
+  transform: scale(1.1);
 }
 
 .signup_form__title--avatar {
@@ -136,63 +167,50 @@
   margin: 0;
 }
 
-.signup_form__fields--name,
-.signup_form__fields--email,
-.signup_form__fields--password {
-  width: 100%;
-}
-
-.signup_form__field_name--field,
-.signup_form__field_email--field,
-.signup_form__field_password--field,
-.signup_form__field_email--field {
-  padding: 16px 17px;
-  width: 100%;
-  border: none;
-  margin: 1px 0;
-}
-
-.signup_form__submit--button {
-  margin: 10px 0;
-  padding: 13px 20px;
-  background-color: var(--blue-main-color);
-  border: 2px solid var(--blue-main-color);
-  color: var(--white-text-color);
-  font-size: calc(var(--font-size-base) + 1px);
-  width: auto;
-  min-width: 140px;
-  border-radius: 4px;
-  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-}
-
-.signup_form__submit--button:hover {
-  cursor: pointer;
-  font-weight: bold;
-  background-color: var(--white-text-color);
-  color: var(--blue-main-color); 
-  border: 2px solid var(--green-second-color);
-}
-
 /* Media queries */
 @media (min-width: 361px) {
   .login_form__field_email--field,
   .login_form__field_password--field {
     padding: 17px 18px;
   }
+
+  .signup_page__title {
+    font-size: calc(var(--font-size-base) + 19px);
+    margin: 20px 0;
+  }
 }
 
 @media (min-width: 481px) {
-  .login_page__title {
+  .login_page__title,
+  .signup_page__title {
     font-size: calc(var(--font-size-base) + 20px);
   }
 
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 1px);
+    margin: 1px 0;
+  }
+
+  .signup_form__container--avatar {
+    padding: 10px;
+    max-width: 380px;
+    width: auto;
+  }
+
   .login_form__fields--email,
-  .login_form__fields--password {
+  .login_form__fields--password,
+  .signup_form__fields--name,
+  .signup_form__fields--email,
+  .signup_form__fields--password  {
     width: 90%;
   }
 
   .login_form__field_email--field,
-  .login_form__field_password--field {
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .signup_form__field_email--field {
     padding: 19px 20px;
     font-size: calc(var(--font-size-base) + 3px);
   }
@@ -201,22 +219,38 @@
     font-size: calc(var(--font-size-base) + 1px);
   }
 
-  .login_form__submit--button {
+  .login_form__submit--button,
+  .signup_form__submit--button {
     font-size: calc(var(--font-size-base) + 2px);
   }
 
-  .login_page__shared_link {
+  .login_form__submit--button,
+  .signup_form__submit--button {
     font-size: calc(var(--font-size-base) + 1px);
   }
 }
 
 @media (min-width: 600px) {
-  .login_page__title {
+  .login_page__title,
+  .signup_page__title  {
     font-size: calc(var(--font-size-base) + 23px);
   }
 
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 2px);
+    margin-bottom: 3px;
+  }
+
+  .signup_form__container--avatar {
+    max-width: 470px;
+  }
+
   .login_form__field_email--field,
-  .login_form__field_password--field {
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .signup_form__field_email--field {
     font-size: calc(var(--font-size-base) + 4px);
   }
 
@@ -224,7 +258,8 @@
     font-size: calc(var(--font-size-base) + 2px);
   }
 
-  .login_form__submit--button {
+  .login_form__submit--button,
+  .signup_form__submit--button  {
     padding: 14px 21px;
     font-size: calc(var(--font-size-base) + 3px);
     min-width: 142px;
@@ -236,12 +271,30 @@
 }
 
 @media (min-width: 769px) {
-  .login_page__title {
-    font-size: calc(var(--font-size-base) + 22px);
+  .login_page__title,
+  .signup_page__title {
+    font-size: calc(var(--font-size-base) + 24px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 3px);
+    margin-bottom: 4px;
+  }
+
+  .signup_form__container--avatar {
+    max-width: 500px;
+  }
+
+  .signup_form__image--avatar {
+    width: 50px;
   }
 
   .login_form__field_email--field,
-  .login_form__field_password--field {
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .signup_form__field_email--field {
     font-size: calc(var(--font-size-base) + 5px);
   }
 
@@ -249,7 +302,8 @@
     font-size: calc(var(--font-size-base) + 3px);
   }
 
-  .login_form__submit--button {
+  .login_form__submit--button,
+  .signup_form__submit--button {
     padding: 14px 21px;
     font-size: calc(var(--font-size-base) + 4px);
     min-width: 146px;
@@ -261,12 +315,26 @@
 }
 
 @media (min-width: 992px) {
-  .login_page__title {
-    font-size: calc(var(--font-size-base) + 23px);
+  .login_page__title,
+  .signup_page__title {
+    font-size: calc(var(--font-size-base) + 24px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 4px);
+    margin-bottom: 5px;
+  }
+
+  .signup_form__image--avatar {
+    width: 52px;
   }
 
   .login_form__field_email--field,
-  .login_form__field_password--field {
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .signup_form__field_email--field {
     font-size: calc(var(--font-size-base) + 7px);
   }
 
@@ -274,7 +342,8 @@
     font-size: calc(var(--font-size-base) + 4px);
   }
 
-  .login_form__submit--button {
+  .login_form__submit--button,
+  .signup_form__submit--button {
     padding: 14px 21px;
     font-size: calc(var(--font-size-base) + 5px);
     min-width: 148px;
@@ -286,12 +355,26 @@
 }
 
 @media (min-width: 1400px) {
-  .login_page__title {
-    font-size: calc(var(--font-size-base) + 24px);
+  .login_page__title,
+  .signup_page__title {
+    font-size: calc(var(--font-size-base) + 25px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 5px);
+    margin-bottom: 6px;
+  }
+
+  .signup_form__image--avatar {
+    width: 55px;
   }
 
   .login_form__field_email--field,
-  .login_form__field_password--field {
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .signup_form__field_email--field {
     font-size: calc(var(--font-size-base) + 8px);
   }
 
@@ -299,7 +382,8 @@
     font-size: calc(var(--font-size-base) + 5px);
   }
 
-  .login_form__submit--button {
+  .login_form__submit--button,
+  .signup_form__submit--button {
     font-size: calc(var(--font-size-base) + 6px);
     min-width: 150px;
   }
@@ -310,12 +394,26 @@
 }
 
 @media (min-width: 1600px) {
-  .login_page__title {
+  .login_page__title,
+  .signup_page__title {
     font-size: calc(var(--font-size-base) + 26px);
   }
 
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 6px);
+    margin-bottom: 7px;
+  }
+
+  .signup_form__image--avatar {
+    width: 56px;
+  }
+
   .login_form__field_email--field,
-  .login_form__field_password--field {
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .signup_form__field_email--field  {
     font-size: calc(var(--font-size-base) + 10px);
   }
 
@@ -323,7 +421,8 @@
     font-size: calc(var(--font-size-base) + 6px);
   }
 
-  .login_form__submit--button {
+  .login_form__submit--button,
+  .signup_form__submit--button {
     font-size: calc(var(--font-size-base) + 7px);
     min-width: 153px;
   }
