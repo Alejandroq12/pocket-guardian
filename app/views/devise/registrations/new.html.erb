@@ -11,14 +11,14 @@
             <% radio_id = "profile_image_#{index}" %>
             <%= f.radio_button :profile_image, profile_image, id: radio_id, class: 'signup_form__radio--button' %>
             <%= f.label :profile_image, class: "signup_form__label--avatar", for: radio_id do %>
-              <%= image_tag("profile_images/#{profile_image}", alt: profile_image, class: "signup_form__image--avatar") %>
+              <%= image_tag("profile_images/#{profile_image}", autofocus: true, alt: profile_image, class: "signup_form__image--avatar") %>
             <% end %>
           <% end %>
           </div>
       </div>
     
       <div class="field signup_form__fields--name">
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Full name", class: 'signup_form__field_name--field' %>
+        <%= f.text_field :name, autocomplete: "name", placeholder: "Full name", class: 'signup_form__field_name--field' %>
       </div>
     
       <div class="field signup_form__fields--email">
