@@ -1,20 +1,21 @@
 <div class="resend_confirmation_password_page">
-  <section>
-    <h2>Resend confirmation instructions</h2>
+  <section class="resend_confirmation_password_page__container">
+    <h2 class="resend_confirmation_password_title">Resend confirmation instructions</h2>
     
-    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { class: 'resend_confirmation_password_page__form', method: :post }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
     
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+      <div class="field resend_confirmation_password_form__fields--email">
+        <%= f.email_field :email, placeholder: 'Email', autofocus: true, autocomplete: "email", class: 'resend_confirmation_password_form__field_email--field', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
       </div>
     
-      <div class="actions">
-        <%= f.submit "Resend confirmation instructions" %>
+      <div class="actions resend_confirmation_password_form__submit_button--container">
+        <%= f.submit "Resend confirmation instructions", class: "resend_confirmation_password_form__submit--button" %>
       </div>
     <% end %>
     
-    <%= render "devise/shared/links" %>
+    <div>
+      <%= render "devise/shared/links" %>
+    </div>
   </section>
 </div>
