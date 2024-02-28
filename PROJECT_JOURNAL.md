@@ -1647,7 +1647,9 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding: 0;
+  width: 100%;
+  padding: 220px 0;
+  overflow-y: scroll;
 }
 
 .login_page__container,
@@ -1656,13 +1658,20 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   max-width: 600px;
   text-align: center;
   width: 100%;
+  overflow-y: scroll;
 }
 
 .login_page__title,
 .signup_page__title {
   color: var(--gray-text-color);
   font-size: calc(var(--font-size-base) + 18px);
-  margin: 18px 0;
+  margin-top: 90px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.login_page__title {
+  margin-top: 0;
 }
 
 .login_page__form,
@@ -1680,10 +1689,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   width: 100%;
 }
 
+.login_form__field_email--field,
+.login_form__field_password--field,
 .signup_form__field_name--field,
 .signup_form__field_email--field,
-.signup_form__field_password--field,
-.signup_form__field_email--field {
+.signup_form__field_password--field {
   padding: 16px 17px;
   width: 100%;
   border: none;
@@ -1715,7 +1725,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   cursor: pointer;
   font-weight: bold;
   background-color: var(--white-text-color);
-  color: var(--blue-main-color); 
+  color: var(--blue-main-color);
   border: 2px solid var(--green-second-color);
 }
 
@@ -1735,8 +1745,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   color: var(--black-color);
 }
 
-/* sign-up page*/
-
+/* Specific for sign-up page */
 .signup_form__container--avatar {
   display: flex;
   justify-content: center;
@@ -1744,12 +1753,12 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   overflow-x: auto;
   border: 1px solid var(--light-gray-text-color);
   border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15);
   background: var(--white-text-color);
   scrollbar-width: thin;
   scrollbar-color: var(--gray-text-color) var(--white-text-color);
   padding: 10px;
-  max-width: 285px; 
+  max-width: 285px;
   width: auto;
 }
 
@@ -1783,14 +1792,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 }
 
 .signup_form__image--avatar {
-  transition: border-color 0.25s ease-in-out;
-}
-
-.signup_form__image--avatar {
   width: 45px;
   margin: 3px;
   padding: 1px;
   border: 2px solid transparent;
+  transition: border-color 0.25s ease-in-out;
 }
 
 .signup_form__radio--button:checked + .signup_form__label--avatar .signup_form__image--avatar {
@@ -1806,18 +1812,28 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 
 /* Media queries */
 @media (min-width: 361px) {
+  .login_page,
+  .signup_page {
+    padding: 225px 0;
+  }
+
   .login_form__field_email--field,
   .login_form__field_password--field {
     padding: 17px 18px;
   }
 
+  .login_page__title,
   .signup_page__title {
     font-size: calc(var(--font-size-base) + 19px);
-    margin: 20px 0;
   }
 }
 
 @media (min-width: 481px) {
+  .login_page,
+  .signup_page {
+    padding: 250px 20px;
+  }
+
   .login_page__title,
   .signup_page__title {
     font-size: calc(var(--font-size-base) + 20px);
@@ -1838,7 +1854,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__fields--password,
   .signup_form__fields--name,
   .signup_form__fields--email,
-  .signup_form__fields--password  {
+  .signup_form__fields--password {
     width: 90%;
   }
 
@@ -1846,8 +1862,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field,
-  .signup_form__field_email--field {
+  .signup_form__field_password--field {
     padding: 19px 20px;
     font-size: calc(var(--font-size-base) + 3px);
   }
@@ -1858,18 +1873,18 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 
   .login_form__submit--button,
   .signup_form__submit--button {
-    font-size: calc(var(--font-size-base) + 2px);
-  }
-
-  .login_form__submit--button,
-  .signup_form__submit--button {
     font-size: calc(var(--font-size-base) + 1px);
   }
 }
 
 @media (min-width: 600px) {
+  .login_page,
+  .signup_page {
+    padding: 270px 25px;
+  }
+
   .login_page__title,
-  .signup_page__title  {
+  .signup_page__title {
     font-size: calc(var(--font-size-base) + 23px);
   }
 
@@ -1886,8 +1901,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field,
-  .signup_form__field_email--field {
+  .signup_form__field_password--field {
     font-size: calc(var(--font-size-base) + 4px);
   }
 
@@ -1896,7 +1910,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   }
 
   .login_form__submit--button,
-  .signup_form__submit--button  {
+  .signup_form__submit--button {
     padding: 14px 21px;
     font-size: calc(var(--font-size-base) + 3px);
     min-width: 142px;
@@ -1908,6 +1922,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 }
 
 @media (min-width: 769px) {
+  .login_page,
+  .signup_page {
+    padding: 290px 25px;
+  }
+
   .login_page__title,
   .signup_page__title {
     font-size: calc(var(--font-size-base) + 24px);
@@ -1930,8 +1949,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field,
-  .signup_form__field_email--field {
+  .signup_form__field_password--field {
     font-size: calc(var(--font-size-base) + 5px);
   }
 
@@ -1952,6 +1970,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 }
 
 @media (min-width: 992px) {
+  .login_page,
+  .signup_page {
+    padding: 280px 40px;
+  }
+
   .login_page__title,
   .signup_page__title {
     font-size: calc(var(--font-size-base) + 24px);
@@ -1970,8 +1993,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field,
-  .signup_form__field_email--field {
+  .signup_form__field_password--field {
     font-size: calc(var(--font-size-base) + 7px);
   }
 
@@ -2010,8 +2032,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field,
-  .signup_form__field_email--field {
+  .signup_form__field_password--field {
     font-size: calc(var(--font-size-base) + 8px);
   }
 
@@ -2049,8 +2070,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field,
-  .signup_form__field_email--field  {
+  .signup_form__field_password--field {
     font-size: calc(var(--font-size-base) + 10px);
   }
 
@@ -2068,5 +2088,4 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
     font-size: calc(var(--font-size-base) + 6px);
   }
 }
-
 ```
