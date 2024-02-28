@@ -1064,7 +1064,7 @@ I added styles to the splash page:
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding: 15px;
+  padding: 360px 15px 150px 15px;
 }
 
 .splash_page__container {
@@ -1076,8 +1076,7 @@ I added styles to the splash page:
 
 .splash_page__title {
   color: var(--gray-text-color);
-  margin-bottom: 230px;
-  margin-top: 230px;
+  margin-bottom: 280px;
   font-size: calc(var(--font-size-base) + 14px);
 }
 
@@ -1648,7 +1647,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   align-items: center;
   height: 100vh;
   width: 100%;
-  padding: 220px 0;
+  padding: 260px 0;
   overflow-y: scroll;
 }
 
@@ -1665,8 +1664,8 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 .signup_page__title {
   color: var(--gray-text-color);
   font-size: calc(var(--font-size-base) + 18px);
-  margin-top: 90px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   position: relative;
 }
 
@@ -1814,7 +1813,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 @media (min-width: 361px) {
   .login_page,
   .signup_page {
-    padding: 225px 0;
+    padding: 275px 0;
   }
 
   .login_form__field_email--field,
@@ -1831,7 +1830,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 @media (min-width: 481px) {
   .login_page,
   .signup_page {
-    padding: 250px 20px;
+    padding: 300px 20px;
   }
 
   .login_page__title,
@@ -1880,7 +1879,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 @media (min-width: 600px) {
   .login_page,
   .signup_page {
-    padding: 270px 25px;
+    padding: 320px 25px;
   }
 
   .login_page__title,
@@ -1924,7 +1923,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 @media (min-width: 769px) {
   .login_page,
   .signup_page {
-    padding: 290px 25px;
+    padding: 330px 25px;
   }
 
   .login_page__title,
@@ -1972,7 +1971,7 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 @media (min-width: 992px) {
   .login_page,
   .signup_page {
-    padding: 280px 40px;
+    padding: 335px 40px;
   }
 
   .login_page__title,
@@ -2014,6 +2013,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 }
 
 @media (min-width: 1400px) {
+  .login_page,
+  .signup_page {
+    padding: 355px 40px;
+  }
+
   .login_page__title,
   .signup_page__title {
     font-size: calc(var(--font-size-base) + 25px);
@@ -2088,4 +2092,5 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
     font-size: calc(var(--font-size-base) + 6px);
   }
 }
+
 ```
