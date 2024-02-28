@@ -1639,9 +1639,12 @@ end
 ```
 I updated the styles to avoid repetition and make the Sign up form responsive:
 ```css
-/* Sessions and registrations - login and register forms */
+/* Sessions, registrations, and password forms */
 .login_page,
-.signup_page {
+.signup_page,
+.forgot_password_page,
+.resend_confirmation_password_page,
+.change_password_page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1652,16 +1655,21 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 }
 
 .login_page__container,
-.signup_page__container {
+.signup_page__container,
+.forgot_password_page__container,
+.resend_confirmation_password_page__container,
+.change_password_page__container {
   margin: 0 auto;
   max-width: 600px;
   text-align: center;
   width: 100%;
-  overflow-y: scroll;
 }
 
 .login_page__title,
-.signup_page__title {
+.signup_page__title,
+.forgot_password_title,
+.resend_confirmation_password__title,
+.change_password__title {
   color: var(--gray-text-color);
   font-size: calc(var(--font-size-base) + 18px);
   margin-top: 10px;
@@ -1669,12 +1677,18 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   position: relative;
 }
 
-.login_page__title {
+.login_page__title,
+.forgot_password_title,
+.resend_confirmation_password__title,
+.change_password__title {
   margin-top: 0;
 }
 
 .login_page__form,
-.signup_page__form {
+.signup_page__form,
+.forgot_password_page__form,
+.resend_confirmation_password_page__form,
+.change_password_page__form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1684,7 +1698,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 .login_form__fields--password,
 .signup_form__fields--name,
 .signup_form__fields--email,
-.signup_form__fields--password {
+.signup_form__fields--password,
+.forgot_password_form__fields--email,
+.resend_confirmation_password_form__fields--email,
+.change_password_form__fields--password,
+.change_password_form__fields--password_confirmation {
   width: 100%;
 }
 
@@ -1692,7 +1710,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 .login_form__field_password--field,
 .signup_form__field_name--field,
 .signup_form__field_email--field,
-.signup_form__field_password--field {
+.signup_form__field_password--field,
+.forgot_password_form__field_email--field,
+.resend_confirmation_password_form__field_email--field,
+.change_password_form__field_password--field,
+.change_password_form__field_password_confirmation--field {
   padding: 16px 17px;
   width: 100%;
   border: none;
@@ -1706,7 +1728,10 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 }
 
 .login_form__submit--button,
-.signup_form__submit--button {
+.signup_form__submit--button,
+.forgot_password_form__submit--button,
+.resend_confirmation_password_form__submit--button,
+.change_password_form__submit--button {
   margin: 10px 0;
   padding: 13px 20px;
   background-color: var(--blue-main-color);
@@ -1720,7 +1745,10 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 }
 
 .login_form__submit--button:hover,
-.signup_form__submit--button:hover {
+.signup_form__submit--button:hover,
+.forgot_password_form__submit--button:hover
+.resend_confirmation_password_form__submit--button:hover,
+.change_password_form__submit--button:hover {
   cursor: pointer;
   font-weight: bold;
   background-color: var(--white-text-color);
@@ -1812,29 +1840,48 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 /* Media queries */
 @media (min-width: 361px) {
   .login_page,
-  .signup_page {
+  .signup_page,
+  .forgot_password_page,
+  .resend_confirmation_password_page,
+  .change_password_page {
     padding: 275px 0;
   }
 
-  .login_form__field_email--field,
-  .login_form__field_password--field {
-    padding: 17px 18px;
+  .login_page__title,
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 19px);
   }
 
-  .login_page__title,
-  .signup_page__title {
-    font-size: calc(var(--font-size-base) + 19px);
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
+    padding: 17px 18px;
   }
 }
 
 @media (min-width: 481px) {
   .login_page,
-  .signup_page {
+  .signup_page,
+  .forgot_password_page,
+  .resend_confirmation_password_page,
+  .change_password_page {
     padding: 300px 20px;
   }
 
   .login_page__title,
-  .signup_page__title {
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
     font-size: calc(var(--font-size-base) + 20px);
   }
 
@@ -1853,7 +1900,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__fields--password,
   .signup_form__fields--name,
   .signup_form__fields--email,
-  .signup_form__fields--password {
+  .signup_form__fields--password,
+  .forgot_password_form__fields--email,
+  .resend_confirmation_password_form__fields--email,
+  .change_password_form__fields--password,
+  .change_password_form__fields--password_confirmation {
     width: 90%;
   }
 
@@ -1861,7 +1912,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field {
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
     padding: 19px 20px;
     font-size: calc(var(--font-size-base) + 3px);
   }
@@ -1871,19 +1926,28 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   }
 
   .login_form__submit--button,
-  .signup_form__submit--button {
+  .signup_form__submit--button,
+  .forgot_password_form__submit--button,
+  .resend_confirmation_password_form__submit--button,
+  .change_password_form__submit--button {
     font-size: calc(var(--font-size-base) + 1px);
   }
 }
 
 @media (min-width: 600px) {
   .login_page,
-  .signup_page {
+  .signup_page,
+  .forgot_password_page,
+  .resend_confirmation_password_page,
+  .change_password_page {
     padding: 320px 25px;
   }
 
   .login_page__title,
-  .signup_page__title {
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
     font-size: calc(var(--font-size-base) + 23px);
   }
 
@@ -1900,7 +1964,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field {
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
     font-size: calc(var(--font-size-base) + 4px);
   }
 
@@ -1909,7 +1977,10 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   }
 
   .login_form__submit--button,
-  .signup_form__submit--button {
+  .signup_form__submit--button,
+  .forgot_password_form__submit--button,
+  .resend_confirmation_password_form__submit--button,
+  .change_password_form__submit--button {
     padding: 14px 21px;
     font-size: calc(var(--font-size-base) + 3px);
     min-width: 142px;
@@ -1922,12 +1993,18 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 
 @media (min-width: 769px) {
   .login_page,
-  .signup_page {
+  .signup_page,
+  .forgot_password_page,
+  .resend_confirmation_password_page,
+  .change_password_page {
     padding: 330px 25px;
   }
 
   .login_page__title,
-  .signup_page__title {
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
     font-size: calc(var(--font-size-base) + 24px);
   }
 
@@ -1948,7 +2025,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field {
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
     font-size: calc(var(--font-size-base) + 5px);
   }
 
@@ -1957,7 +2038,10 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   }
 
   .login_form__submit--button,
-  .signup_form__submit--button {
+  .signup_form__submit--button,
+  .forgot_password_form__submit--button,
+  .resend_confirmation_password_form__submit--button,
+  .change_password_form__submit--button {
     padding: 14px 21px;
     font-size: calc(var(--font-size-base) + 4px);
     min-width: 146px;
@@ -1970,12 +2054,18 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 
 @media (min-width: 992px) {
   .login_page,
-  .signup_page {
+  .signup_page,
+  .forgot_password_page,
+  .resend_confirmation_password_page,
+  .change_password_page {
     padding: 335px 40px;
   }
 
   .login_page__title,
-  .signup_page__title {
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
     font-size: calc(var(--font-size-base) + 24px);
   }
 
@@ -1992,7 +2082,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field {
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
     font-size: calc(var(--font-size-base) + 7px);
   }
 
@@ -2001,7 +2095,10 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   }
 
   .login_form__submit--button,
-  .signup_form__submit--button {
+  .signup_form__submit--button,
+  .forgot_password_form__submit--button,
+  .resend_confirmation_password_form__submit--button,
+  .change_password_form__submit--button {
     padding: 14px 21px;
     font-size: calc(var(--font-size-base) + 5px);
     min-width: 148px;
@@ -2014,12 +2111,18 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 
 @media (min-width: 1400px) {
   .login_page,
-  .signup_page {
+  .signup_page,
+  .forgot_password_page,
+  .resend_confirmation_password_page,
+  .change_password_page {
     padding: 355px 40px;
   }
 
   .login_page__title,
-  .signup_page__title {
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
     font-size: calc(var(--font-size-base) + 25px);
   }
 
@@ -2036,7 +2139,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field {
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
     font-size: calc(var(--font-size-base) + 8px);
   }
 
@@ -2045,7 +2152,10 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   }
 
   .login_form__submit--button,
-  .signup_form__submit--button {
+  .signup_form__submit--button,
+  .forgot_password_form__submit--button,
+  .resend_confirmation_password_form__submit--button,
+  .change_password_form__submit--button {
     font-size: calc(var(--font-size-base) + 6px);
     min-width: 150px;
   }
@@ -2057,7 +2167,10 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
 
 @media (min-width: 1600px) {
   .login_page__title,
-  .signup_page__title {
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
     font-size: calc(var(--font-size-base) + 26px);
   }
 
@@ -2074,7 +2187,11 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   .login_form__field_password--field,
   .signup_form__field_name--field,
   .signup_form__field_email--field,
-  .signup_form__field_password--field {
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
     font-size: calc(var(--font-size-base) + 10px);
   }
 
@@ -2083,7 +2200,10 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
   }
 
   .login_form__submit--button,
-  .signup_form__submit--button {
+  .signup_form__submit--button,
+  .forgot_password_form__submit--button,
+  .resend_confirmation_password_form__submit--button,
+  .change_password_form__submit--button {
     font-size: calc(var(--font-size-base) + 7px);
     min-width: 153px;
   }
@@ -2092,5 +2212,85 @@ I updated the styles to avoid repetition and make the Sign up form responsive:
     font-size: calc(var(--font-size-base) + 6px);
   }
 }
+```
+I added classes to the resend confirmation password page following the BEM convention:
+```erb
+<div class="resend_confirmation_password_page">
+  <section class="resend_confirmation_password_page__container">
+    <h2 class="resend_confirmation_password__title">Resend confirmation instructions</h2>
+    
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { class: 'resend_confirmation_password_page__form', method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+    
+      <div class="field resend_confirmation_password_form__fields--email">
+        <%= f.email_field :email, placeholder: 'Email', autofocus: true, autocomplete: "email", class: 'resend_confirmation_password_form__field_email--field', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+      </div>
+    
+      <div class="actions resend_confirmation_password_form__submit_button--container">
+        <%= f.submit "Resend confirmation instructions", class: "resend_confirmation_password_form__submit--button" %>
+      </div>
+    <% end %>
+    
+    <div>
+      <%= render "devise/shared/links" %>
+    </div>
+  </section>
+</div>
+```
 
+I added classes to the forgot password page following the BEM convention:
+```erb
+<div class="forgot_password_page">
+  <section class="forgot_password_page__container">
+    <h2 class="forgot_password_title">Forgot your password?</h2>
+    
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'form forgot_password_page__form', method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+    
+      <div class="field forgot_password_form__fields--email">
+        <%= f.email_field :email, placeholder: 'Email', autofocus: true, autocomplete: "email", class: 'forgot_password_form__field_email--field' %>
+      </div>
+    
+      <div class="actions forgot_password_form__submit_button--container">
+        <%= f.submit "Send me reset password instructions", class: "forgot_password_form__submit--button" %>
+      </div>
+    <% end %>
+    
+    <div>
+      <%= render "devise/shared/links" %>
+    </div>
+  </section>
+</div>
+```
+
+
+I added classes to the change your password page following the BEM convention:
+
+```erb
+<div class="change_password_page">
+  <section class="change_password_page__container">
+    <h2 class="change_password__title">Change your password</h2>
+    
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'change_password_page__form', method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+    
+      <div class="field change_password_form__fields--password">
+        <%= f.password_field :password, placeholder: "New password (#{@minimum_password_length} characters minimum).", autofocus: true, autocomplete: "new-password", class: 'change_password_form__field_password--field' %>
+      </div>
+    
+      <div class="field change_password_form__fields--password_confirmation">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm new password", class: 'change_password_form__field_password_confirmation--field' %>
+      </div>
+    
+      <div class="actions change_password_form__submit_button--container">
+        <%= f.submit "Change my password", class: 'change_password_form__submit--button' %>
+      </div>
+    <% end %>
+    
+    <div>
+      <%= render "devise/shared/links" %>
+    </div>
+  </section>
+</div>
 ```
