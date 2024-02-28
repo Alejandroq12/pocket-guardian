@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding: 15px;
+  padding: 360px 15px 150px 15px;
 }
 
 .splash_page__container {
@@ -15,8 +15,7 @@
 
 .splash_page__title {
   color: var(--gray-text-color);
-  margin-bottom: 230px;
-  margin-top: 230px;
+  margin-bottom: 280px;
   font-size: calc(var(--font-size-base) + 14px);
 }
 
@@ -90,10 +89,6 @@
 }
 
 @media (min-width: 769px) {
-  .splash_page {
-    padding: 60px;
-  }
-
   .splash_page__title {
     font-size: calc(var(--font-size-base) + 34px);
   }
