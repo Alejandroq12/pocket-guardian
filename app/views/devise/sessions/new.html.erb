@@ -1,6 +1,5 @@
 <div class="login_page">
   <section class="login_page__container">
-    <h2 class="login_page__title">Log in</h2>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form login_page__form' }) do |f| %>
       <div class="field login_form__fields--email">
         <%= f.email_field :email, placeholder: 'Email', autofocus: true, autocomplete: "email", class: 'login_form__field_email--field' %>
