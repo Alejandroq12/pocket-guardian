@@ -2294,3 +2294,115 @@ I added classes to the change your password page following the BEM convention:
   </section>
 </div>
 ```
+I created the navigation bar:
+```erb
+<% if user_signed_in? || !current_page?(root_path) || current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>
+  <nav class="nav_bar" aria-label="Main navigation">
+    <div class="nav_bar__container">
+      <% if !current_page?(authenticated_root_path) %>
+        <%= link_to "javascript:history.back()", class: 'nav_bar__back_button', aria_label: "Go back", role: "button" do %>
+          <span aria-hidden="true"><</span>
+          <span class="visually-hidden">Back</span>
+        <% end %>
+      <% elsif user_signed_in? && current_page?(authenticated_root_path) %>
+          <button type="button" class="hamburger_button" aria-label="Menu">
+          <span class="button__bar"></span>
+          <span class="button__bar"></span>
+          <span class="button__bar"></span>
+        </button>
+      <% elsif !user_signed_in? && (current_page?(new_user_session_path) || current_page?(new_user_registration_path)) %>
+        <%= link_to "javascript:history.back()", class: 'nav_bar__back_button', aria_label: "Go back", role: "button" do %>
+          <span aria-hidden="true"><</span>
+          <span class="visually-hidden">Back</span>
+        <% end %>
+      <% end %>
+      <!-- Title based on page -->
+      <div class="nav_bar__title" role="heading" aria-level="1">
+        <% if user_signed_in? && current_page?(authenticated_root_path) %>
+          <h1>Groups</h1>
+        <% elsif user_signed_in? && current_page?(new_user_group_path) %>
+          <h1>Add a new group</h1>
+        <% elsif user_signed_in? && current_page?(user_group_path(current_user, @group)) %>
+          <h1>Movements</h1>
+        <% elsif user_signed_in? && current_page?(new_user_group_movement_path) %>
+          <h1>Add a new movement</h1>
+        <% elsif current_page?(new_user_session_path) || controller_name == "sessions" %>
+          <h1 class="login_page__title">Login</h1>
+        <% elsif current_page?(new_user_registration_path) || controller_name == "registrations" %>
+          <h1 class="signup_page__title">Register</h1>
+        <% elsif controller_name == "confirmations" && (action_name == "new" || action_name == "create") %>
+          <h1 class="resend_confirmation_password__title">Resend confirmation instructions</h1>
+        <% elsif controller_name == "passwords" && (action_name == "new" || action_name == "create") %>
+          <h1 class="forgot_password_title">Forgot your password?</h1>
+        <% elsif controller_name == "passwords" && (action_name == "edit" || action_name == "update") %>
+          <h1 class="change_password__title">Change your password</h1>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+<% end %>
+
+```
+
+I added styles with the navigation bar:
+
+```css
+.nav_bar {
+  background-color: var(--blue-main-color);
+  width: 100%;
+  position: relative;
+}
+
+.visually-hidden {
+  display: none;
+}
+
+.nav_bar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 105px;
+  padding: 12px;
+  position: relative;
+}
+
+.nav_bar__back_button {
+  text-decoration: none;
+  color: var(--white-text-color);
+  font-size: calc(var(--font-size-base) + 18px);
+  position: absolute;
+  left: 15px;
+  z-index: 10;
+  font-weight: bold;
+}
+
+.nav_bar__title {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.hamburger_button {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger_button .button__bar {
+  display: flex;
+  width: calc(var(--font-size-base) + 18px);
+  height: calc(var(--font-size-base) - 13px);
+  margin: 8px auto;
+  background-color: var(--white-text-color);
+  border-radius: 2px;
+}
+
+/* Todo: Add media queries to improve layout */
+
+```
