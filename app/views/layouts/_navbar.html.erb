@@ -30,6 +30,8 @@
           <h1 class="login_page__title">Login</h1>
         <% elsif current_page?(new_user_registration_path) || controller_name == "registrations" %>
           <h1 class="signup_page__title">Register</h1>
+        <% elsif controller_name == "confirmations" && (action_name == "new" || action_name == "create" %>
+          <h1>Resend confirmation instructions</h1>
       </div>
     </div>
   </nav>
