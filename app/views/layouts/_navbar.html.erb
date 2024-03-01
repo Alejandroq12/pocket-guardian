@@ -11,6 +11,10 @@
           <span class="button_bar"></span>
           <span class="button_bar"></span>
         </button>
+        <% elsif !user_signed_in? && (current_page?(new_user_session_path) || current_page(new_user_registration_path)) %>
+        <%= link_to "javascript:history.back()", class: 'nav_bar__back_button' do %>
+          <span><</span>
+        <% end %>
       <% end %>
     </div>
   </nav>
