@@ -1,7 +1,11 @@
 <% if user_signed_in? || !current_page?(root_page) || current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>
   <nav class="nav-bar">
     <div class="nav_bar__container">
-
+      <% if !current_page?(authenticated_root_path)%>
+        <%= link_to "javascript:history.back()", class: 'nav_bar__back_button' do %>
+        <span><</span>
+        <% end %>
+      <% end %>
     </div>
   </nav>
 <% end %>
