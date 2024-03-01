@@ -1,9 +1,9 @@
 .splash_page {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   height: 100vh;
-  padding: 360px 15px 150px 15px;
+  padding: 180px 15px 0 15px;
 }
 
 .splash_page__container {
@@ -15,7 +15,7 @@
 
 .splash_page__title {
   color: var(--gray-text-color);
-  margin-bottom: 280px;
+  margin-bottom: 150px;
   font-size: calc(var(--font-size-base) + 14px);
 }
 
@@ -102,12 +102,18 @@
 }
 
 @media (min-width: 992px) {
+  .splash_page {
+    justify-content: center;
+    padding: 220px 15px 50px 15px;
+  }
+
   .splash_page__container {
     max-width: 750px;
   }
 
   .splash_page__title {
     font-size: calc(var(--font-size-base) + 43px);
+    margin-bottom: 150px;
   }
 
   .splash_page__login-button,
@@ -149,5 +155,15 @@
     width: 48%;
     padding: 26px 31px;
     font-size: calc(var(--font-size-base) + 6px);
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 0) {
+  .splash_page {
+    padding: 180px 15px 100px 15px;
+  }
+
+  .splash_page__title {
+    margin-bottom: 50px;
   }
 }

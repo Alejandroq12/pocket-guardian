@@ -1,7 +1,5 @@
 <div class="resend_confirmation_password_page">
-  <section class="resend_confirmation_password_page__container">
-    <h2 class="resend_confirmation_password__title">Resend confirmation instructions</h2>
-    
+  <section class="resend_confirmation_password_page__container">    
     <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { class: 'resend_confirmation_password_page__form', method: :post }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
     

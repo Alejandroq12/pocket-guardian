@@ -7,10 +7,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   width: 100%;
-  padding: 260px 0;
+  padding: 0;
   overflow-y: scroll;
+  position: absolute;
 }
 
 .login_page__container,
@@ -29,18 +30,18 @@
 .forgot_password_title,
 .resend_confirmation_password__title,
 .change_password__title {
-  color: var(--gray-text-color);
+  color: var(--white-text-color);
   font-size: calc(var(--font-size-base) + 18px);
-  margin-top: 10px;
-  margin-bottom: 10px;
   position: relative;
 }
 
-.login_page__title,
 .forgot_password_title,
 .resend_confirmation_password__title,
 .change_password__title {
-  margin-top: 0;
+  font-size: calc(var(--font-size-base) + 6px);
+  word-wrap: break-word;
+  margin: 0 auto;
+  width: 60%;
 }
 
 .login_page__form,
@@ -105,8 +106,7 @@
 
 .login_form__submit--button:hover,
 .signup_form__submit--button:hover,
-.forgot_password_form__submit--button:hover
-.resend_confirmation_password_form__submit--button:hover,
+.forgot_password_form__submit--button:hover .resend_confirmation_password_form__submit--button:hover,
 .change_password_form__submit--button:hover {
   cursor: pointer;
   font-weight: bold;
@@ -198,20 +198,19 @@
 
 /* Media queries */
 @media (min-width: 361px) {
-  .login_page,
-  .signup_page,
-  .forgot_password_page,
-  .resend_confirmation_password_page,
-  .change_password_page {
-    padding: 275px 0;
-  }
-
   .login_page__title,
   .signup_page__title,
   .forgot_password_title,
   .resend_confirmation_password__title,
   .change_password__title {
     font-size: calc(var(--font-size-base) + 19px);
+  }
+
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 7px);
+    width: 62%;
   }
 
   .login_form__field_email--field,
@@ -228,20 +227,21 @@
 }
 
 @media (min-width: 481px) {
-  .login_page,
-  .signup_page,
-  .forgot_password_page,
-  .resend_confirmation_password_page,
-  .change_password_page {
-    padding: 300px 20px;
-  }
-
   .login_page__title,
   .signup_page__title,
   .forgot_password_title,
   .resend_confirmation_password__title,
   .change_password__title {
     font-size: calc(var(--font-size-base) + 20px);
+  }
+
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 15px);
+    word-wrap: break-word;
+    margin: 0 auto;
+    width: 80%;
   }
 
   .signup_form__title--avatar {
@@ -294,20 +294,18 @@
 }
 
 @media (min-width: 600px) {
-  .login_page,
-  .signup_page,
-  .forgot_password_page,
-  .resend_confirmation_password_page,
-  .change_password_page {
-    padding: 320px 25px;
-  }
-
   .login_page__title,
   .signup_page__title,
   .forgot_password_title,
   .resend_confirmation_password__title,
   .change_password__title {
     font-size: calc(var(--font-size-base) + 23px);
+  }
+
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 18px);
   }
 
   .signup_form__title--avatar {
@@ -350,13 +348,23 @@
   }
 }
 
+@media only screen and (orientation: landscape) and (min-width: 0) {
+  .login_page,
+  .signup_page,
+  .forgot_password_page,
+  .resend_confirmation_password_page,
+  .change_password_page {
+    padding: 260px 0;
+  }
+}
+
 @media (min-width: 769px) {
   .login_page,
   .signup_page,
   .forgot_password_page,
   .resend_confirmation_password_page,
   .change_password_page {
-    padding: 330px 25px;
+    padding: 270px 25px;
   }
 
   .login_page__title,
@@ -417,7 +425,7 @@
   .forgot_password_page,
   .resend_confirmation_password_page,
   .change_password_page {
-    padding: 335px 40px;
+    padding: 280px 40px;
   }
 
   .login_page__title,
@@ -474,7 +482,7 @@
   .forgot_password_page,
   .resend_confirmation_password_page,
   .change_password_page {
-    padding: 355px 40px;
+    padding: 285px 40px;
   }
 
   .login_page__title,
