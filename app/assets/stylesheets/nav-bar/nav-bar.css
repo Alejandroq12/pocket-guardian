@@ -15,26 +15,26 @@
   width: 100%;
   height: 105px;
   padding: 12px;
-  position: relative; /* Ensure nav elements are positioned relatively within */
+  position: relative;
 }
 
 .nav_bar__back_button {
   text-decoration: none;
   color: var(--white-text-color);
   font-size: calc(var(--font-size-base) + 18px);
-  position: absolute; /* Positioning back button absolutely to keep the title centered */
-  left: 15px; /* Adjust based on your layout */
+  position: absolute;
+  left: 15px;
   z-index: 10;
   font-weight: bold;
 }
 
 .nav_bar__title {
-  width: 100%; /* Full width to help center the title */
-  text-align: center; /* Center the title */
-  position: absolute; /* Absolute positioning to keep it centered */
-  left: 0; /* Align with the left edge */
-  right: 0; /* Align with the right edge */
-  margin: auto; /* Centering the title */
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .hamburger_button {
