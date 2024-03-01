@@ -35,12 +35,11 @@
   position: relative;
 }
 
-
 .forgot_password_title,
 .resend_confirmation_password__title,
 .change_password__title {
   font-size: calc(var(--font-size-base) + 6px);
-  text-wrap: wrap;
+  word-wrap: break-word;
   margin: 0 auto;
   width: 60%;
 }
@@ -242,7 +241,7 @@
   .resend_confirmation_password__title,
   .change_password__title {
     font-size: calc(var(--font-size-base) + 15px);
-    text-wrap: wrap;
+    word-wrap: break-word;
     margin: 0 auto;
     width: 80%;
   }
