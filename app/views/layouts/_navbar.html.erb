@@ -26,6 +26,8 @@
           <h1>Movements</h1>
         <% elsif user_signed_in? && current_page?(new_user_group_movement_path) %>
           <h1>Add a new movement</h1>
+        <% elsif current_page?(new_user_session_path) || controller_name == "sessions" %>
+          <h1 class="login_page__title">Login</h1>
       </div>
     </div>
   </nav>
