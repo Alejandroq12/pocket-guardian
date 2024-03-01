@@ -1,28 +1,27 @@
 <div class="container groups_page">
   <section class="groups_page__container">
-    <h2 class="title groups_page__title">Groups details</h2>
+    <h2 class="groups_page__title">Groups details</h2>
     <% if @groups.any? %>
-     <% @groups.each do |group| %>
-        <!-- Display each group information here  -->
+      <% @groups.each do |group| %>
         <div class="group_details__container">
-          <div class="group_details__container--all_info">
+          <div class="group_details__all_info">
             <%= link_to user_group_path(current_user, group) do %>
-              <%= image_tag("group_icons/#{group.icon}", alt: group.name, class: "icon-preview group_details__container--image") %>
-              <p class="group_details__container--date"><%= group.created_at %></p>
-              <p class="group_details__container--name"><%= group.name %></p>
-              <p class="group_details__container--sum"><%= group.movements_sum %></p>
+              <%= image_tag("group_icons/#{group.icon}", alt: group.name, class: "group_details__image") %>
+              <p class="group_details__date"><%= group.created_at.strftime("%B %d, %Y") %></p>
+              <p class="group_details__name"><%= group.name %></p>
+              <p class="group_details__sum"><%= group.movements_sum %></p>
             <% end %>
-            <%= button_to "Delete",  user_group_path(current_user, group), method: :delete, class: "button group_details__container--button" %>
+            <%= button_to "Delete", user_group_path(current_user, group), method: :delete, class: "group_details__button" %>
           </div>
-          <div class="group_details__container--buttons">
-            <%= link_to "Add a group", new_user_group_path(current_user), class: "button group_details__container--main_buttons" %>
-            <%= link_to "New movement", new_user_group_movement_path(current_user, group), class: "button group_details__container--main_buttons" %>
+          <div class="group_details__buttons">
+            <%= link_to "Add a group", new_user_group_path(current_user), class: "group_details__main_button" %>
+            <%= link_to "New movement", new_user_group_movement_path(current_user, group), class: "group_details__main_button" %>
           </div>
         </div>
       <% end %>
     <% else %>
-       <p class="no_groups_paragraph">There are no groups.</p>
-      <%= link_to "Add a group", new_user_group_path(current_user), class: "button button group_details__container--main_buttons" %>
+      <p class="groups_page__no_groups--paragraph">There are no groups.</p>
+      <%= link_to "Add a group", new_user_group_path(current_user), class: "groups_page__add_group_button" %>
     <% end %>
   </section>
 </div>
