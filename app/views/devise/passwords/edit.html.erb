@@ -1,7 +1,5 @@
 <div class="change_password_page">
   <section class="change_password_page__container">
-    <h2 class="change_password__title">Change your password</h2>
-    
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'change_password_page__form', method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <%= f.hidden_field :reset_password_token %>
