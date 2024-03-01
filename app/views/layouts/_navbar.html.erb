@@ -32,6 +32,8 @@
           <h1 class="signup_page__title">Register</h1>
         <% elsif controller_name == "confirmations" && (action_name == "new" || action_name == "create" %>
           <h1>Resend confirmation instructions</h1>
+        <% elsif controller_name =="passwords" && (action_name == "new" || action_name == "create") %>
+          <h1 class="forgot_password_title">Forgot your password</h1>
       </div>
     </div>
   </nav>
