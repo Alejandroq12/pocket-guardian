@@ -16,6 +16,11 @@
           <span><</span>
         <% end %>
       <% end %>
+      <!-- Title based on page -->
+      <div>
+        <% if user_signed_in? && current_page?(authenticated_root_path) %>
+          <h1>Groups</h1>
+      </div>
     </div>
   </nav>
 <% end %>
