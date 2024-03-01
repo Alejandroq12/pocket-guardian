@@ -1,27 +1,7 @@
-<% if user_signed_in? || current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>
-  <nav class="nav_bar">
+<% if user_signed_in? || !current_page?(root_page) || current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>
+  <nav class="nav-bar">
     <div class="nav_bar__container">
-      <% if current_page?(authenticated_root_path) %>
-        <button type="button" class="hamburger_button">
-          <span class="button__bar"></span>
-          <span class="button__bar"></span>
-          <span class="button__bar"></span>
-        </button>
-      <% elsif current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>
-        <%= link_to "<", :back, class: 'nav_bar__back_button' %>
-      <% elsif user_signed_in? && current_page?(user_group_path) %>
-        <%= link_to "<", :back, class: 'nav_bar__back_button' %>
-      <% end %>
-      <% if user_signed_in? && current_page?(authenticated_root_path) %>
-        <h1>Groups</h1>
-      <% elsif user_signed_in? && current_page?(user_group_path) %>
-        <h1>Movements</h1>
-      <% elsif current_page?(new_user_session_path) %>
-        <h1 class="login_page__title">Login</h1>
-      <% elsif current_page?(new_user_registration_path) %>
-        <h1 class="signup_page__title">Register</h1>
-      <% end %>
-      <%=  "X" %>
+
     </div>
   </nav>
 <% end %>
