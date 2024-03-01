@@ -5,6 +5,12 @@
         <%= link_to "javascript:history.back()", class: 'nav_bar__back_button' do %>
         <span><</span>
         <% end %>
+      <% elsif user_signed_in? && current_page?(authenticated_root_path) %>
+        <button type="button" class="hamburguer_button">
+          <span class="button_bar"></span>
+          <span class="button_bar"></span>
+          <span class="button_bar"></span>
+        </button>
       <% end %>
     </div>
   </nav>
