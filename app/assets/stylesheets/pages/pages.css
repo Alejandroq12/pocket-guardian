@@ -32,7 +32,9 @@
   padding: 8px;
 }
 
-.group_left, .group_center, .group_right {
+.group_left,
+.group_center,
+.group_right {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,12 +89,13 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: none;
+  background-color: transparent;
   text-align: center;
   padding: 10px 0;
 }
 
-.group_page__main_button, .groups_page__add_group_button {
+.group_page__main_button,
+.groups_page__add_group_button {
   background-color: var(--green-second-color);
   color: var(--white-text-color);
   padding: 15px;
@@ -110,7 +113,8 @@
   box-sizing: border-box;
 }
 
-.group_page__main_button::after, .groups_page__add_group_button::after {
+.group_page__main_button::after,
+.groups_page__add_group_button::after {
   content: '';
   position: absolute;
   top: 5px;
@@ -122,7 +126,8 @@
   pointer-events: none;
 }
 
-.group_page__main_button:hover, .groups_page__add_group_button:hover {
+.group_page__main_button:hover,
+.groups_page__add_group_button:hover {
   background-color: var(--white-text-color);
   color: var(--green-second-color);
 }
@@ -143,9 +148,10 @@
   text-align: center;
 }
 
-.group__link--back, .group__link--add {
+.group__link--back,
+.group__link--add {
   display: inline-block;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px 20px;
   text-decoration: none;
@@ -153,7 +159,8 @@
   transition: background-color 0.3s ease;
 }
 
-.group__link--back:hover, .group__link--add:hover {
+.group__link--back:hover,
+.group__link--add:hover {
   background-color: #45a049;
 }
 
@@ -179,7 +186,9 @@
   margin-bottom: 15px;
 }
 
-.movement__name, .movement__date, .movement__amount {
+.movement__name,
+.movement__date,
+.movement__amount {
   margin: 5px 0;
 }
 

@@ -44,7 +44,7 @@ body {
 
 .form__logout-button {
   width: 25%;
-  background-color: #D9534F;
+  background-color: #d9534f;
   color: white;
   padding: 15px 20px;
   border: none;
@@ -53,5 +53,5 @@ body {
 }
 
 .form__logout-button:hover {
-  background-color: #C9302C;
+  background-color: #c9302c;
 }
