@@ -1,21 +1,23 @@
-<div>
-  <%= link_to "Go back", authenticated_root_path %>
-  <%= image_tag("group_icons/#{@group.icon}", alt: @group.icon, class: "icon-preview") %>
-  <h1><%= @group.name %> movements </h1>
+<div class="group">
+  <%= image_tag("group_icons/#{@group.icon}", alt: @group.icon, class: "group__icon") %>
+  <h1 class="movement__title"><%= @group.name %> Movements</h1>
   <% if @movements.any? %>
-    <%= @movements.sum(:amount)%>
-    <div>
+    <div class="group__sum">Total: $<%= @movements.sum(:amount) %></div>
+    <div class="group__movements">
       <% @movements.each do |movement| %>
-        <p><%= movement.name %></p>
-        <p><%= movement.created_at %></p>
-        <p>$<%= movement.amount %></p>
-        <%= button_to "Delete movement", user_group_movement_path(current_user, @group, movement), method: :delete,
-                       data: { turbo_confirm: "Are you sure you want to delete this movement?" },
-                       aria: { label: "Delete #{movement.name}" } %>
+        <div class="movement">
+          <p class="movement__name"><%= movement.name %></p>
+          <p class="movement__date">Date: <%= movement.created_at.strftime("%B %d, %Y at %I:%M%p") %></p>
+          <p class="movement__amount">Total payment: $<%= movement.amount %></p>
+          <%= button_to "Delete movement", user_group_movement_path(current_user, @group, movement), method: :delete,
+                         data: { turbo_confirm: "Are you sure you want to delete this movement?" },
+                         aria: { label: "Delete #{movement.name}" },
+                         class: "movement__delete-btn" %>
+        </div>
       <% end %>
     </div>
   <% else %>
-    <p>There are no movements, yet.</p>
+    <p class="group__no-movements">There are no movements, yet.</p>
   <% end %>
-  <%= link_to "Add a new movement", new_user_group_movement_path(current_user, @group) %>
+  <%= link_to "Add a new movement", new_user_group_movement_path(current_user, @group), class: "group__link--add" %>
 </div>
