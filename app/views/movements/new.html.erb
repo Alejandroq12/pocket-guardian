@@ -1,44 +1,44 @@
-<div>
+<div class="form--movement">
   <% if @movement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
-      <ul>
+    <div id="error_explanation" class="form__errors">
+      <h2 class="form__errors-title"><%= pluralize(@movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
+      <ul class="form__errors-list">
         <% @movement.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="form__error-message"><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
   <% if @group.present? %>
-    <%= form_with(model: @movement, url: user_group_movements_path(current_user, @group), local: true) do |form| %>
-      <div>
-        <%= form.label :name %>
-        <%= form.text_field :name %>
+    <%= form_with(model: @movement, url: user_group_movements_path(current_user, @group), local: true, html: { class: 'form__body' }) do |form| %>
+      <div class="form__section form__section--name">
+        <%= form.label :name, class: 'form__label' %>
+        <%= form.text_field :name, class: 'form__text-field' %>
       </div>
   
-      <div>
-        <%= form.label :amount %>
-        <%= form.number_field :amount %>
+      <div class="form__section form__section--amount">
+        <%= form.label :amount, class: 'form__label' %>
+        <%= form.number_field :amount, class: 'form__number-field' %>
       </div>
-      <%= form.submit "Add a movement" %>
+      <%= form.submit "Add a movement", class: 'form__submit-button' %>
     <% end %>
   <% else %>
-    <%= form_with(model: @movement, local: true) do |form| %>
-      <div>
-        <%= form.label :group_id %>
-        <%= form.collection_select :group_id, @groups, :id, :name, include_blank: true %>
+    <%= form_with(model: @movement, local: true, html: { class: 'form__body' }) do |form| %>
+      <div class="form__section form__section--group">
+        <%= form.label :group_id, class: 'form__label' %>
+        <%= form.collection_select :group_id, @groups, :id, :name, { include_blank: true }, { class: 'form__select' } %>
       </div>
-      <div>
-        <%= form.label :name %>
-        <%= form.text_field :name %>
+      <div class="form__section form__section--name">
+        <%= form.label :name, class: 'form__label' %>
+        <%= form.text_field :name, class: 'form__text-field' %>
       </div>
   
-      <div>
-        <%= form.label :amount %>
-        <%= form.number_field :amount %>
+      <div class="form__section form__section--amount">
+        <%= form.label :amount, class: 'form__label' %>
+        <%= form.number_field :amount, class: 'form__number-field' %>
       </div>
-      <%= form.submit "Add a movement" %>
+      <%= form.submit "Add a movement", class: 'form__submit-button' %>
     <% end %>
   <% end %>
 </div>

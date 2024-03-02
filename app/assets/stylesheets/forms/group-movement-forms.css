@@ -1,0 +1,110 @@
+/* General form styling */
+.form--group, .form--movement {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.form__title, .form__subtitle {
+  color: #4A90E2; /* Snapscan blue */
+  text-align: center;
+}
+
+.form__section {
+  margin-bottom: 20px;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: bold;
+}
+
+.form__text-field, .form__number-field, .form__select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.form__submit-button {
+  width: 100%;
+  background-color: #4A90E2; /* Snapscan blue */
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form__submit-button:hover {
+  background-color: #357ABD; /* Darker blue */
+}
+
+.form__link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #4A90E2;
+  text-decoration: none;
+}
+
+/* Specific to icon selection */
+.form__section--icon {
+  text-align: center;
+}
+
+.form__option {
+  display: inline-block;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.form__radio-button {
+  display: none; /* Hide the radio button itself */
+}
+
+.form__label--icon {
+  border: 2px solid transparent;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.form__label--icon:hover, .form__radio-button:checked + .form__label--icon {
+  border-color: #4A90E2; /* Snapscan blue */
+}
+
+.form__image-preview {
+  width: 50px;
+  height: 50px;
+}
+
+/* Error handling */
+.form__errors {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.form__errors-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.form__errors-list {
+  margin-bottom: 0;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.form__error-message {
+  margin: 0;
+}
