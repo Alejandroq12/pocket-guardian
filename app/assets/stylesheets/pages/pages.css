@@ -119,3 +119,7 @@
   background-color: var(--white-text-color);
   color: var(--green-second-color);
 }
+
+.group_details__container a {
+  text-decoration: none;
+}
