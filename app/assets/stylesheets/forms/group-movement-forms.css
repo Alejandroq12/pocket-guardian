@@ -7,7 +7,7 @@
 }
 
 .form__title, .form__subtitle {
-  color: #4A90E2; /* Snapscan blue */
+  color: #4A90E2;
   text-align: center;
 }
 
@@ -33,7 +33,7 @@
 
 .form__submit-button {
   width: 100%;
-  background-color: #4A90E2; /* Snapscan blue */
+  background-color: #4A90E2;
   color: white;
   padding: 15px 20px;
   border: none;
@@ -42,7 +42,7 @@
 }
 
 .form__submit-button:hover {
-  background-color: #357ABD; /* Darker blue */
+  background-color: #357ABD;
 }
 
 .form__link {
@@ -56,6 +56,9 @@
 /* Specific to icon selection */
 .form__section--icon {
   text-align: center;
+  overflow-y: scroll;
+  width: 90%;
+  max-height: 220px;
 }
 
 .form__option {
@@ -65,7 +68,7 @@
 }
 
 .form__radio-button {
-  display: none; /* Hide the radio button itself */
+  display: none;
 }
 
 .form__label--icon {
@@ -76,7 +79,7 @@
 }
 
 .form__label--icon:hover, .form__radio-button:checked + .form__label--icon {
-  border-color: #4A90E2; /* Snapscan blue */
+  border-color: #4A90E2;
 }
 
 .form__image-preview {
@@ -107,4 +110,12 @@
 
 .form__error-message {
   margin: 0;
+}
+
+.form__label--selected {
+  border-color: #4A90E2;
+}
+
+.form__radio-button:checked + .form__label--icon {
+  border-color: #00aa39;
 }
