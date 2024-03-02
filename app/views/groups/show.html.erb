@@ -1,6 +1,6 @@
 <div class="group">
   <%= image_tag("group_icons/#{@group.icon}", alt: @group.icon, class: "group__icon") %>
-  <h1 class="movement__title"><%= @group.name %> Movements</h1>
+  <h1 class="group__title"><%= @group.name %> Movements</h1>
   <% if @movements.any? %>
     <div class="group__sum">Total: $<%= @movements.sum(:amount) %></div>
     <div class="group__movements">
