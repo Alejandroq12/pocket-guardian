@@ -25,11 +25,6 @@
   padding: 8px;
 }
 
-.group_details__all_info {
-  display: flex;
-  width: 100%;
-}
-
 .group_left, .group_center, .group_right {
   display: flex;
   align-items: center;

@@ -1,16 +1,19 @@
 <div class="container groups_page">
   <section class="groups_page__container">
-    <h2 class="groups_page__title--details">Groups details</h2>
     <% if @groups.any? %>
 
       <% @groups.each do |group| %>
         <div class="group_details__container">
-          <div class="group_details__all_info">
+          <div class="group_left">
             <%= link_to user_group_path(current_user, group) do %>
-              <%= image_tag("group_icons/#{group.icon}", alt: group.name, class: "group_details__image") %>
-              <p class="group_details__date"><%= group.created_at.strftime("%B %d, %Y") %></p>
-              <p class="group_details__name"><%= group.name %></p>
-              <p class="group_details__sum"><%= group.movements_sum %></p>
+            <%= image_tag("group_icons/#{group.icon}", alt: group.name, class: "group_details__image") %>
+          </div>
+          <div class="group_center">
+            <p class="group_details__name"><%= group.name %></p>
+            <p class="group_details__date"><%= group.created_at.strftime("%B %d, %Y") %></p>
+          </div>
+          <div class="group_right">
+            <p class="group_details__sum"><%= group.movements_sum %></p>
             <% end %>
             <%= button_to "Delete", user_group_path(current_user, group), method: :delete, class: "group_details__button" %>
           </div>
