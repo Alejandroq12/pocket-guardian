@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # get 'users/edit/:id', to: 'users#edit', as: :edit_user
 
+  resources :movements, only: [:new, :create]
   resources :users, only: [] do
     resources :groups, only: [:new, :show, :create, :destroy] do
       resources :movements, only: [:new, :show, :create, :destroy]
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   # resources :groups, only: [:edit, :update, :destroy]
-  # recources :movements, only: [:edit, :update, :destroy]
+  # resources :movements, only: [:new, :create, :destroy]
 
   authenticated :user do
     root 'groups#index', as: :authenticated_root
