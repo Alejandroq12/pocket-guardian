@@ -16,7 +16,7 @@
     <p class="alert"><%= alert %></p>
     <div>
       <% if user_signed_in? %>
-        <%= button_to "Log out", destroy_user_session_path, method: :delete %> <br />
+        <%= button_to "Log out", destroy_user_session_path, method: :delete, class: 'form__logout-button', data: { turbo_confirm: 'Are you sure?' } %> <br />
       <% end %>
     </div>
     <%= yield %>

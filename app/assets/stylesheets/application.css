@@ -41,3 +41,17 @@ body {
 .icon-preview {
   width: 40px;
 }
+
+.form__logout-button {
+  width: 25%;
+  background-color: #D9534F;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form__logout-button:hover {
+  background-color: #C9302C;
+}
