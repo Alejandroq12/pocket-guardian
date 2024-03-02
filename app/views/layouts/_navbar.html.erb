@@ -25,7 +25,7 @@
         <% elsif user_signed_in? && (current_page?(new_user_group_path(current_user)) || current_page?(new_movement_path)) %>
           <h1>Add a new group</h1>
         <% elsif user_signed_in? && current_page?(user_group_path(current_user, @group)) %>
-          <h1>Movements</h1>
+          <h1 class="movement__title">Movements</h1>
         <% elsif user_signed_in? && current_page?(new_user_group_movement_path) %>
           <h1>Add a new movement</h1>
         <% elsif current_page?(new_user_session_path) || controller_name == "sessions" %>
