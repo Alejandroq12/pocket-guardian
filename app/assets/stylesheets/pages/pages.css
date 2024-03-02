@@ -2,10 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 45vh;
   width: 100%;
   padding: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   position: absolute;
 }
 
@@ -26,21 +26,16 @@
 }
 
 .group_details__all_info {
+  display: flex;
   width: 100%;
 }
 
 .group_left, .group_center, .group_right {
-  display: inline-flex;
-  align-items: start;
+  display: flex;
+  align-items: center;
   justify-content: center;
   margin: 5px;
   text-align: center;
-}
-
-.group_right {
-  display: inline-flex;
-  align-items: end;
-  justify-content: center;
 }
 
 .group_left {
@@ -50,14 +45,82 @@
 .group_center {
   flex-basis: 60%;
   flex-direction: column;
+  align-items: start;
 }
 
 .group_right {
   flex-basis: 20%;
   flex-direction: column;
+  align-items: center;
 }
 
 .group_details__image {
   width: 50px;
   height: auto;
+}
+
+.group_details__button {
+  background-color: var(--green-second-color);
+  color: var(--white-text-color);
+  border: 2px solid var(--green-second-color);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.group_details__button:hover {
+  background-color: var(--white-text-color);
+  color: var(--black-text-color);
+  border: 2px solid var(--green-second-color);
+}
+
+.group_page__buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: none;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.group_page__main_button, .groups_page__add_group_button {
+  background-color: var(--green-second-color);
+  color: var(--white-text-color);
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  width: calc(100% - 32px);
+  margin: 4px auto;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  border: solid 5px var(--green-second-color);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.group_page__main_button::after, .groups_page__add_group_button::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 3px;
+  border: 2px solid white;
+  pointer-events: none;
+}
+
+.group_page__main_button:hover, .groups_page__add_group_button:hover {
+  background-color: var(--white-text-color);
+  color: var(--green-second-color);
 }
