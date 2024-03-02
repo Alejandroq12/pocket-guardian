@@ -1,5 +1,9 @@
-<div>
-  <h1>The Pocket Guardian</h1>
-  <%= button_to "LOGIN", new_user_session_path, method: :get %>
-  <%= button_to "SIGN UP", new_user_registration_path, method: :get %>
+<div class="container splash_page">
+  <section class="splash_page__container">
+    <h1 class="title splash_page__title" tabindex="0" >The Pocket Guardian</h1>
+    <div class="buttons splash_page__buttons" role="navigation" aria-lable="Primary">
+      <%= link_to "LOG IN", new_user_session_path, method: :get, class: "button splash_page__login-button", role: "button", aria_label: "Log in to your acount", tab_index: '1' %>
+      <%= link_to "SIGN UP", new_user_registration_path, method: :get, class: "button splash_page__signup-button", role: "buton", aria_label: "Sign up for a new account", tab_index: '2' %>
+    </div>
+  </section>
 </div>

@@ -1,0 +1,581 @@
+/* Sessions, registrations, and password forms */
+.login_page,
+.signup_page,
+.forgot_password_page,
+.resend_confirmation_password_page,
+.change_password_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 100%;
+  padding: 0;
+  overflow-y: scroll;
+  position: absolute;
+}
+
+.login_page__container,
+.signup_page__container,
+.forgot_password_page__container,
+.resend_confirmation_password_page__container,
+.change_password_page__container {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+  width: 100%;
+}
+
+.login_page__title,
+.signup_page__title,
+.forgot_password_title,
+.resend_confirmation_password__title,
+.change_password__title {
+  color: var(--white-text-color);
+  font-size: calc(var(--font-size-base) + 18px);
+  position: relative;
+}
+
+.forgot_password_title,
+.resend_confirmation_password__title,
+.change_password__title {
+  font-size: calc(var(--font-size-base) + 6px);
+  word-wrap: break-word;
+  margin: 0 auto;
+  width: 60%;
+}
+
+.login_page__form,
+.signup_page__form,
+.forgot_password_page__form,
+.resend_confirmation_password_page__form,
+.change_password_page__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login_form__fields--email,
+.login_form__fields--password,
+.signup_form__fields--name,
+.signup_form__fields--email,
+.signup_form__fields--password,
+.forgot_password_form__fields--email,
+.resend_confirmation_password_form__fields--email,
+.change_password_form__fields--password,
+.change_password_form__fields--password_confirmation {
+  width: 100%;
+}
+
+.login_form__field_email--field,
+.login_form__field_password--field,
+.signup_form__field_name--field,
+.signup_form__field_email--field,
+.signup_form__field_password--field,
+.forgot_password_form__field_email--field,
+.resend_confirmation_password_form__field_email--field,
+.change_password_form__field_password--field,
+.change_password_form__field_password_confirmation--field {
+  padding: 16px 17px;
+  width: 100%;
+  border: none;
+  margin: 1px 0;
+}
+
+.login_form__check_box--remember {
+  margin-top: 16px;
+  margin-bottom: 12px;
+  color: var(--gray-text-color);
+}
+
+.login_form__submit--button,
+.signup_form__submit--button,
+.forgot_password_form__submit--button,
+.resend_confirmation_password_form__submit--button,
+.change_password_form__submit--button {
+  margin: 10px 0;
+  padding: 13px 20px;
+  background-color: var(--blue-main-color);
+  border: 2px solid var(--blue-main-color);
+  color: var(--white-text-color);
+  font-size: calc(var(--font-size-base) + 1px);
+  width: auto;
+  min-width: 140px;
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.login_form__submit--button:hover,
+.signup_form__submit--button:hover,
+.forgot_password_form__submit--button:hover .resend_confirmation_password_form__submit--button:hover,
+.change_password_form__submit--button:hover {
+  cursor: pointer;
+  font-weight: bold;
+  background-color: var(--white-text-color);
+  color: var(--blue-main-color);
+  border: 2px solid var(--green-second-color);
+}
+
+.login_page__shared_link {
+  text-decoration: none;
+  color: var(--gray-text-color);
+  display: inline-block;
+  margin: 8px 0;
+  transition: color 0.3s;
+}
+
+.login_page__shared_link--login:hover,
+.login_page__shared_link--signup:hover,
+.login_page__shared_link--forgot-password:hover,
+.login_page__shared_link--confirmation:hover,
+.login_page__shared_link--unlock:hover {
+  color: var(--black-color);
+}
+
+/* Specific for sign-up page */
+.signup_form__container--avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  border: 1px solid var(--light-gray-text-color);
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15);
+  background: var(--white-text-color);
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-text-color) var(--white-text-color);
+  padding: 10px;
+  max-width: 285px;
+  width: auto;
+}
+
+/* Styles for Webkit browsers like Chrome, Safari */
+.signup_form__container--avatar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.signup_form__container--avatar::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.signup_form__container--avatar::-webkit-scrollbar-thumb {
+  background-color: var(--gray-text-color);
+  border-radius: 10px;
+  border: 2px solid var(--white-text-color);
+}
+
+.signup_form__radio--button {
+  display: none;
+}
+
+.signup_form__label--avatar {
+  display: flex;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.signup_form__label--avatar:hover {
+  transform: translateY(-2px);
+}
+
+.signup_form__image--avatar {
+  width: 45px;
+  margin: 3px;
+  padding: 1px;
+  border: 2px solid transparent;
+  transition: border-color 0.25s ease-in-out;
+}
+
+.signup_form__radio--button:checked + .signup_form__label--avatar .signup_form__image--avatar {
+  border-color: var(--green-second-color);
+  transform: scale(1.1);
+}
+
+.signup_form__title--avatar {
+  color: var(--gray-text-color);
+  font-size: calc(var(--font-size-base));
+  margin: 0;
+}
+
+/* Media queries */
+@media (min-width: 361px) {
+  .login_page__title,
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 19px);
+  }
+
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 7px);
+    width: 62%;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
+    padding: 17px 18px;
+  }
+}
+
+@media (min-width: 481px) {
+  .login_page__title,
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 20px);
+  }
+
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 15px);
+    word-wrap: break-word;
+    margin: 0 auto;
+    width: 80%;
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 1px);
+    margin: 1px 0;
+  }
+
+  .signup_form__container--avatar {
+    padding: 10px;
+    max-width: 380px;
+    width: auto;
+  }
+
+  .login_form__fields--email,
+  .login_form__fields--password,
+  .signup_form__fields--name,
+  .signup_form__fields--email,
+  .signup_form__fields--password,
+  .forgot_password_form__fields--email,
+  .resend_confirmation_password_form__fields--email,
+  .change_password_form__fields--password,
+  .change_password_form__fields--password_confirmation {
+    width: 90%;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
+    padding: 19px 20px;
+    font-size: calc(var(--font-size-base) + 3px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 1px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button,
+  .forgot_password_form__submit--button,
+  .resend_confirmation_password_form__submit--button,
+  .change_password_form__submit--button {
+    font-size: calc(var(--font-size-base) + 1px);
+  }
+}
+
+@media (min-width: 600px) {
+  .login_page__title,
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 23px);
+  }
+
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 18px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 2px);
+    margin-bottom: 3px;
+  }
+
+  .signup_form__container--avatar {
+    max-width: 470px;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
+    font-size: calc(var(--font-size-base) + 4px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 2px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button,
+  .forgot_password_form__submit--button,
+  .resend_confirmation_password_form__submit--button,
+  .change_password_form__submit--button {
+    padding: 14px 21px;
+    font-size: calc(var(--font-size-base) + 3px);
+    min-width: 142px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 2px);
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 0) {
+  .login_page,
+  .signup_page,
+  .forgot_password_page,
+  .resend_confirmation_password_page,
+  .change_password_page {
+    padding: 260px 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .login_page,
+  .signup_page,
+  .forgot_password_page,
+  .resend_confirmation_password_page,
+  .change_password_page {
+    padding: 270px 25px;
+  }
+
+  .login_page__title,
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 24px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 3px);
+    margin-bottom: 4px;
+  }
+
+  .signup_form__container--avatar {
+    max-width: 500px;
+  }
+
+  .signup_form__image--avatar {
+    width: 50px;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
+    font-size: calc(var(--font-size-base) + 5px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 3px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button,
+  .forgot_password_form__submit--button,
+  .resend_confirmation_password_form__submit--button,
+  .change_password_form__submit--button {
+    padding: 14px 21px;
+    font-size: calc(var(--font-size-base) + 4px);
+    min-width: 146px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 3px);
+  }
+}
+
+@media (min-width: 992px) {
+  .login_page,
+  .signup_page,
+  .forgot_password_page,
+  .resend_confirmation_password_page,
+  .change_password_page {
+    padding: 280px 40px;
+  }
+
+  .login_page__title,
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 24px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 4px);
+    margin-bottom: 5px;
+  }
+
+  .signup_form__image--avatar {
+    width: 52px;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
+    font-size: calc(var(--font-size-base) + 7px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 4px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button,
+  .forgot_password_form__submit--button,
+  .resend_confirmation_password_form__submit--button,
+  .change_password_form__submit--button {
+    padding: 14px 21px;
+    font-size: calc(var(--font-size-base) + 5px);
+    min-width: 148px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 4px);
+  }
+}
+
+@media (min-width: 1400px) {
+  .login_page,
+  .signup_page,
+  .forgot_password_page,
+  .resend_confirmation_password_page,
+  .change_password_page {
+    padding: 285px 40px;
+  }
+
+  .login_page__title,
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 25px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 5px);
+    margin-bottom: 6px;
+  }
+
+  .signup_form__image--avatar {
+    width: 55px;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
+    font-size: calc(var(--font-size-base) + 8px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 5px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button,
+  .forgot_password_form__submit--button,
+  .resend_confirmation_password_form__submit--button,
+  .change_password_form__submit--button {
+    font-size: calc(var(--font-size-base) + 6px);
+    min-width: 150px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 5px);
+  }
+}
+
+@media (min-width: 1600px) {
+  .login_page__title,
+  .signup_page__title,
+  .forgot_password_title,
+  .resend_confirmation_password__title,
+  .change_password__title {
+    font-size: calc(var(--font-size-base) + 26px);
+  }
+
+  .signup_form__title--avatar {
+    font-size: calc(var(--font-size-base) + 6px);
+    margin-bottom: 7px;
+  }
+
+  .signup_form__image--avatar {
+    width: 56px;
+  }
+
+  .login_form__field_email--field,
+  .login_form__field_password--field,
+  .signup_form__field_name--field,
+  .signup_form__field_email--field,
+  .signup_form__field_password--field,
+  .forgot_password_form__field_email--field,
+  .resend_confirmation_password_form__field_email--field,
+  .change_password_form__field_password--field,
+  .change_password_form__field_password_confirmation--field {
+    font-size: calc(var(--font-size-base) + 10px);
+  }
+
+  .login_form__check_box--remember {
+    font-size: calc(var(--font-size-base) + 6px);
+  }
+
+  .login_form__submit--button,
+  .signup_form__submit--button,
+  .forgot_password_form__submit--button,
+  .resend_confirmation_password_form__submit--button,
+  .change_password_form__submit--button {
+    font-size: calc(var(--font-size-base) + 7px);
+    min-width: 153px;
+  }
+
+  .login_page__shared_link {
+    font-size: calc(var(--font-size-base) + 6px);
+  }
+}

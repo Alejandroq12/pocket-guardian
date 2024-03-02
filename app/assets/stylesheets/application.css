@@ -14,14 +14,44 @@
  *= require_self
  */
 
+:root {
+  --gray-background-color: rgb(235, 235, 235);
+  --blue-main-color: #3778c2;
+  --green-second-color: #5fb523;
+  --gray-text-color: #434b54;
+  --light-gray-text-color: #b9bbbd;
+  --white-text-color: #fff;
+  --black-color: #000;
+  --font-size-base: 16px;
+}
+
 *,
 *::before,
 *::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: proxima-nova, sans-serif;
+}
+
+body {
+  background-color: var(--gray-background-color);
 }
 
 .icon-preview {
   width: 40px;
+}
+
+.form__logout-button {
+  width: 25%;
+  background-color: #d9534f;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form__logout-button:hover {
+  background-color: #c9302c;
 }

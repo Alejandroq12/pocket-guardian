@@ -1,20 +1,22 @@
-<%= form_with(model: [current_user, @group], local: true) do |form| %>
-  <h1>Add a new group</h1>
-
-  <div>
-    <h2>Choose an icon</h2>
-    <% Group.icon_choices.each do |icon| %>
-      <%= form.radio_button :icon, icon%>
-      <%= label :icon, icon, value: icon %>
-      <%= image_tag("group_icons/#{icon}", alt: icon, class: "icon-preview") %>
+<%= form_with(model: [current_user, @group], local: true, html: { class: 'form--group' }) do |form| %>
+  <div class="form__section form__section--icon">
+    <h2 class="form__subtitle">Choose an icon</h2>
+<% Group.icon_choices.each do |icon| %>
+  <div class="form__option">
+    <%= form.radio_button :icon, icon, class: 'form__radio-button', id: "icon_#{icon}" %>
+    <%= label :icon, icon, value: icon, class: 'form__label form__label--icon', title: icon.gsub('.svg', ''), for: "icon_#{icon}" do %>
+      <%= image_tag("group_icons/#{icon}", alt: icon, class: "form__image-preview") %>
     <% end %>
   </div>
+<% end %>
 
-  <div>
-    <%= form.label :name, "Group name" %>
-    <%= form.text_field :name %>
   </div>
 
-  <%= form.submit "Create group" %>
-  <%= link_to  "Go back", authenticated_root_path%>
+  <div class="form__section form__section--name">
+    <%= form.label :name, "Group name", class: 'form__label' %>
+    <%= form.text_field :name, class: 'form__text-field' %>
+  </div>
+
+  <%= form.submit "Create group", class: 'form__submit-button' %>
+  <%= link_to "Go back", authenticated_root_path, class: 'form__link' %>
 <% end %>
