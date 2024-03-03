@@ -22,12 +22,18 @@
       <div class="nav_bar__title" role="heading" aria-level="1">
         <% if user_signed_in? && current_page?(authenticated_root_path) %>
           <h1 class="groups_page__title">Categories</h1>
+        <% elsif user_signed_in? && (current_page?(new_movement_path)) %>
+          <h1>Add a new transaction</h1>
+
+
+
         <% elsif user_signed_in? && (current_page?(new_user_group_path(current_user)) || current_page?(new_movement_path)) %>
-          <h1>Add a new group</h1>
+          <h1>Add a new categoty</h1>
+
         <% elsif user_signed_in? && current_page?(user_group_path(current_user, @group)) %>
-          <h1 class="movement__title">Movements</h1>
+          <h1 class="movement__title">Transactions</h1>
         <% elsif user_signed_in? && current_page?(new_user_group_movement_path) %>
-          <h1>Add a new movement</h1>
+          <h1>Add a new transaction</h1>
         <% elsif current_page?(new_user_session_path) || controller_name == "sessions" %>
           <h1 class="login_page__title">Login</h1>
         <% elsif current_page?(new_user_registration_path) || controller_name == "registrations" %>

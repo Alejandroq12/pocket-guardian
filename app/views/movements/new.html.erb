@@ -1,7 +1,7 @@
 <div class="form--movement">
   <% if @movement.errors.any? %>
     <div id="error_explanation" class="form__errors">
-      <h2 class="form__errors-title"><%= pluralize(@movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
+      <h2 class="form__errors-title"><%= pluralize(@movement.errors.count, "error") %> prohibited this transaction from being saved:</h2>
       <ul class="form__errors-list">
         <% @movement.errors.full_messages.each do |message| %>
           <li class="form__error-message"><%= message %></li>
@@ -21,7 +21,7 @@
         <%= form.label :amount, class: 'form__label' %>
         <%= form.number_field :amount, class: 'form__number-field' %>
       </div>
-      <%= form.submit "Add a movement", class: 'form__submit-button' %>
+      <%= form.submit "Add a transaction", class: 'form__submit-button' %>
     <% end %>
   <% else %>
     <%= form_with(model: @movement, local: true, html: { class: 'form__body' }) do |form| %>
@@ -38,7 +38,7 @@
         <%= form.label :amount, class: 'form__label' %>
         <%= form.number_field :amount, class: 'form__number-field' %>
       </div>
-      <%= form.submit "Add a movement", class: 'form__submit-button' %>
+      <%= form.submit "Add a transaction", class: 'form__submit-button' %>
     <% end %>
   <% end %>
 </div>
