@@ -23,6 +23,7 @@
     - [Run tests](#run-tests)
     - [Run linter](#run-linter)
     - [Deployment](#deployment)
+    - [Video presentation](#video-presentation)
   - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -30,7 +31,6 @@
   - [🙏 Acknowledgments ](#-acknowledgments-)
   - [❓ FAQ ](#-faq-)
   - [📝 License ](#-license-)
-  - [📝 Project journal ](#-project-journal-)
 
 # 📖 The Pocker Guardian <a name="about-project"></a>
 
@@ -47,7 +47,8 @@ The Pocker Guardian is a full-stack web application that I created from scratch.
 
 ### Key Features <a name="key-features"></a>
 
-- **Under construction.**
+- **It allows the user to create transaction groups.**
+- **It allows the user to know the total amount spent.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -66,7 +67,7 @@ In order to run this project you need:
 
 ```sh
 cd my-folder
-git clone https://github.com/Alejandroq12/juliodev-blog.git
+git clone https://github.com/Alejandroq12/pocket-guardian.git
 ```
 
 ### Install
@@ -124,17 +125,6 @@ To execute all test suites in the application, use the following command in your
 rspec
 ```
 
-If you wish to run only the controller request tests, you can specify the path to your request specs directory:
-
-```sh
-rspec spec/requests/ 
-```
-
-If you wish to run only the integration tests:
-```sh
-rspec spec/system
-```
-
 ### Run linter
 
 To run linter, run the following command:
@@ -149,9 +139,13 @@ npx stylelint "**/*.{css,scss}"
 
 ### Deployment
 
-You can deploy this project using:
+Check my project:
+[The Guardian Pocket](https://pocket-guardian-fec21289dfe6.herokuapp.com/)
 
-Not available at the moment.
+### Video presentation
+
+Check my video:
+[Video presentation](https://www.loom.com/share/1cb735ebf6dc4c8abbf97b4d1b0e12db?sid=dfd22f65-7c8a-4fc7-ac8b-a308e7f8194f)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -168,7 +162,8 @@ Not available at the moment.
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Under construction.**
+- [ ] **I will add the hamburger button.**
+- [ ] **I will add cool statistics.**
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -192,7 +187,11 @@ Thanks in advance.
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank all of my colleagues who inspire to do my best everyday.
+This project was inspired by the original design idea by Gregoire Vella on Behance. I extend my sincere appreciation to Gregoire Vella for their innovative and user-friendly design concepts, which have greatly influenced the development of this application. The design adopted for this Ruby on Rails capstone project adheres to the guidelines and aesthetic established by Gregoire Vella, under the terms of the Creative Commons license.
+
+I would like to express my gratitude for the opportunity to learn from such a well-crafted design and for the creative insights it provided throughout the development process. This project not only helped me in honing my skills in Ruby on Rails but also in understanding the importance of user interface and experience in web application development.
+
+Thank you, Gregoire Vella, for your significant contribution to the design community and for providing a source of inspiration for developers like myself.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -213,8 +212,3 @@ This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 📝 Project journal <a name="project-journal"></a>
-
-This readme serves as the project journal in which I document the creation process of this project. This approach will help me learn faster, as humans sometimes forget details, and it will also enable other developers to understand the development process. [PROJECT_JOURNAL](./PROJECT_JOURNAL).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>

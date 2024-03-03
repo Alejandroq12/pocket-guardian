@@ -20,12 +20,12 @@
         </div>
       <% end %>
       <div class="group_page__buttons">
-        <%= link_to "Add a group", new_user_group_path(current_user), class: "group_page__main_button" %>
-        <%= link_to "Add a new movement", new_movement_path, class: "group_page__main_button" %>
+        <%= link_to "Add a category", new_user_group_path(current_user), class: "group_page__main_button" %>
+        <%= link_to "Add a new transaction", new_movement_path, class: "group_page__main_button" %>
       </div>
     <% else %>
-      <p class="groups_page__no_groups--paragraph">There are no groups.</p>
-      <%= link_to "Add a group", new_user_group_path(current_user), class: "groups_page__add_group_button" %>
+      <p class="groups_page__no_groups--paragraph">There are no categories.</p>
+      <%= link_to "Add a category", new_user_group_path(current_user), class: "groups_page__add_group_button" %>
     <% end %>
   </section>
 </div>

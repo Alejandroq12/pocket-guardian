@@ -126,6 +126,26 @@
   pointer-events: none;
 }
 
+.groups_page__add_group_button {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  padding: 15px;
+  background-color: var(--green-second-color);
+  color: var(--white-text-color);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 0 auto 5px;
+}
+
 .group_page__main_button:hover,
 .groups_page__add_group_button:hover {
   background-color: var(--white-text-color);

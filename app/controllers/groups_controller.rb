@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
   def create
     @group = current_user.groups.build(group_params)
     if @group.save
-      redirect_to user_groups_path(current_user), notice: 'Group was successfully created.'
+      redirect_to user_groups_path(current_user), notice: 'Category was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
   def destroy
     @group = current_user.groups.find(params[:id])
     @group.destroy
-    redirect_to authenticated_root_path, notice: 'Group was sucessfuly deleted'
+    redirect_to authenticated_root_path, notice: 'Category was sucessfuly deleted'
   end
 
   private
