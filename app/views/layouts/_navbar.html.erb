@@ -24,12 +24,8 @@
           <h1 class="groups_page__title">Categories</h1>
         <% elsif user_signed_in? && (current_page?(new_movement_path)) %>
           <h1>Add a new transaction</h1>
-
-
-
         <% elsif user_signed_in? && (current_page?(new_user_group_path(current_user)) || current_page?(new_movement_path)) %>
-          <h1>Add a new categoty</h1>
-
+          <h1>Add a new category</h1>
         <% elsif user_signed_in? && current_page?(user_group_path(current_user, @group)) %>
           <h1 class="movement__title">Transactions</h1>
         <% elsif user_signed_in? && current_page?(new_user_group_movement_path) %>
