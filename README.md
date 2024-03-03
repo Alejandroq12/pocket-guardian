@@ -187,7 +187,11 @@ Thanks in advance.
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank all of my colleagues who inspire to do my best everyday.
+This project was inspired by the original design idea by Gregoire Vella on Behance. I extend my sincere appreciation to Gregoire Vella for their innovative and user-friendly design concepts, which have greatly influenced the development of this application. The design adopted for this Ruby on Rails capstone project adheres to the guidelines and aesthetic established by Gregoire Vella, under the terms of the Creative Commons license.
+
+I would like to express my gratitude for the opportunity to learn from such a well-crafted design and for the creative insights it provided throughout the development process. This project not only helped me in honing my skills in Ruby on Rails but also in understanding the importance of user interface and experience in web application development.
+
+Thank you, Gregoire Vella, for your significant contribution to the design community and for providing a source of inspiration for developers like myself.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
