@@ -48,8 +48,8 @@ The Pocker Guardian is a full-stack web application that I created from scratch.
 
 ### Key Features <a name="key-features"></a>
 
-- **It allows the user to create trasaction groups.**
-- **It allows the user know the total amoutn spent.**
+- **It allows the user to create transaction groups.**
+- **It allows the user to know the total amount spent.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -163,7 +163,7 @@ Check my video:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **I will add the hamburguer button.**
+- [ ] **I will add the hamburger button.**
 - [ ] **I will add cool statistics.**
 
 
