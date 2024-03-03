@@ -23,6 +23,7 @@
     - [Run tests](#run-tests)
     - [Run linter](#run-linter)
     - [Deployment](#deployment)
+    - [Video presentation](#video-presentation)
   - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -142,6 +143,10 @@ npx stylelint "**/*.{css,scss}"
 Check my project:
 [The Guardian Pocket](https://pocket-guardian-fec21289dfe6.herokuapp.com/)
 
+### Video presentation
+
+Check my video:
+[Video presentation](https://www.loom.com/share/1cb735ebf6dc4c8abbf97b4d1b0e12db?sid=dfd22f65-7c8a-4fc7-ac8b-a308e7f8194f)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
