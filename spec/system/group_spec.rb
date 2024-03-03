@@ -16,7 +16,7 @@ RSpec.describe 'GroupCreation', type: :system do
 
     click_button 'Create group'
 
-    expect(page).to have_text('Group was successfully created.')
+    expect(page).to have_text('Category was successfully created.')
     expect(Group.last.user).to eq(user)
   end
 end

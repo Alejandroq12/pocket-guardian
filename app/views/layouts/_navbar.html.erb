@@ -21,7 +21,7 @@
       <!-- Title based on page -->
       <div class="nav_bar__title" role="heading" aria-level="1">
         <% if user_signed_in? && current_page?(authenticated_root_path) %>
-          <h1 class="groups_page__title">Groups</h1>
+          <h1 class="groups_page__title">Categories</h1>
         <% elsif user_signed_in? && (current_page?(new_user_group_path(current_user)) || current_page?(new_movement_path)) %>
           <h1>Add a new group</h1>
         <% elsif user_signed_in? && current_page?(user_group_path(current_user, @group)) %>
