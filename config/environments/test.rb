@@ -13,6 +13,8 @@ Rails.application.configure do
     Bullet.unused_eager_loading_enable = true
     Bullet.n_plus_one_query_enable     = true
   end
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
 
   # Settings specified here will take precedence over those in config/application.rb.
 

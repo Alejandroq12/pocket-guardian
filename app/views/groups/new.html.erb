@@ -4,9 +4,8 @@
 <% Group.icon_choices.each do |icon| %>
   <div class="form__option">
     <%= form.radio_button :icon, icon, class: 'form__radio-button', id: "icon_#{icon}" %>
-    <%= label :icon, icon, value: icon, class: 'form__label form__label--icon', title: icon.gsub('.svg', ''), for: "icon_#{icon}" do %>
+    <%= label :icon, icon, value: icon, class: 'form__label form__label--icon', title: icon.gsub('.svg', ''), for: "icon_#{icon}" %>
       <%= image_tag("group_icons/#{icon}", alt: icon, class: "form__image-preview") %>
-    <% end %>
   </div>
 <% end %>
 
