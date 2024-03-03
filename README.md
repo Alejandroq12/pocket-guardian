@@ -31,7 +31,6 @@
   - [🙏 Acknowledgments ](#-acknowledgments-)
   - [❓ FAQ ](#-faq-)
   - [📝 License ](#-license-)
-  - [📝 Project journal ](#-project-journal-)
 
 # 📖 The Pocker Guardian <a name="about-project"></a>
 
@@ -209,8 +208,3 @@ This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 📝 Project journal <a name="project-journal"></a>
-
-This readme serves as the project journal in which I document the creation process of this project. This approach will help me learn faster, as humans sometimes forget details, and it will also enable other developers to understand the development process. [PROJECT_JOURNAL](./PROJECT_JOURNAL.md).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
