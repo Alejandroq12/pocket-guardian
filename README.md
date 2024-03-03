@@ -47,7 +47,8 @@ The Pocker Guardian is a full-stack web application that I created from scratch.
 
 ### Key Features <a name="key-features"></a>
 
-- **Under construction.**
+- **It allows the user to create trasaction groups.**
+- **It allows the user know the total amoutn spent.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -66,7 +67,7 @@ In order to run this project you need:
 
 ```sh
 cd my-folder
-git clone https://github.com/Alejandroq12/juliodev-blog.git
+git clone https://github.com/Alejandroq12/pocket-guardian.git
 ```
 
 ### Install
@@ -124,17 +125,6 @@ To execute all test suites in the application, use the following command in your
 rspec
 ```
 
-If you wish to run only the controller request tests, you can specify the path to your request specs directory:
-
-```sh
-rspec spec/requests/ 
-```
-
-If you wish to run only the integration tests:
-```sh
-rspec spec/system
-```
-
 ### Run linter
 
 To run linter, run the following command:
@@ -168,7 +158,8 @@ Not available at the moment.
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Under construction.**
+- [ ] **I will add the hamburguer button.**
+- [ ] **I will add cool statistics.**
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
