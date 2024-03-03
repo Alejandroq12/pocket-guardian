@@ -126,19 +126,12 @@
   pointer-events: none;
 }
 
-.group_page__main_button:hover,
-.groups_page__add_group_button:hover {
-  background-color: var(--white-text-color);
-  color: var(--green-second-color);
-}
-
 .groups_page__add_group_button {
   position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 40px);
-  margin: 0 20px;
   padding: 15px;
   background-color: var(--green-second-color);
   color: var(--white-text-color);
@@ -153,6 +146,11 @@
   margin: 0 auto 5px;
 }
 
+.group_page__main_button:hover,
+.groups_page__add_group_button:hover {
+  background-color: var(--white-text-color);
+  color: var(--green-second-color);
+}
 
 .group_details__container a {
   text-decoration: none;
