@@ -14,7 +14,7 @@ RSpec.describe 'GroupCreation', type: :system do
 
     find("label[for='icon_education.svg']").click
 
-    click_button 'Create group'
+    click_button 'Create category'
 
     expect(page).to have_text('Category was successfully created.')
     expect(Group.last.user).to eq(user)
