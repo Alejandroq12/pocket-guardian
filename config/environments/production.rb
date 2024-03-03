@@ -1,7 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: 'rails-recipes-app-5174969e2b0d.herokuapp.com', protocol: 'https' } # Make sure to replace 'yourdomain.com' with your actual domain
+  config.action_mailer.default_url_options = { host: 'pocket-guardian-fec21289dfe6.herokuapp.com', protocol: 'https' } # Make sure to replace 'yourdomain.com' with your actual domain
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
