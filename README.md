@@ -139,9 +139,9 @@ npx stylelint "**/*.{css,scss}"
 
 ### Deployment
 
-You can deploy this project using:
+Check my project:
+[The Guardian Pocket](https://pocket-guardian-fec21289dfe6.herokuapp.com/)
 
-Not available at the moment.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
