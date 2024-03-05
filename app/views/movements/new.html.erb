@@ -15,7 +15,7 @@
     <%= form_with(model: @movement, url: user_group_movements_path(current_user, @group), local: true, html: { class: 'form__body' }) do |form| %>
       <div class="form__section form__section--name">
         <%= form.label :name, class: 'form__label' %>
-        <%= form.text_field :name, class: 'form__text-field', required: true %>
+        <%= form.text_field :name, class: 'form__text-field', required: true, minlength: 3 %>
       </div>
   
       <div class="form__section form__section--amount">
@@ -32,7 +32,7 @@
       </div>
       <div class="form__section form__section--name">
         <%= form.label :name, class: 'form__label' %>
-        <%= form.text_field :name, class: 'form__text-field', required: true %>
+        <%= form.text_field :name, class: 'form__text-field', required: true, minlength: 3 %>
       </div>
   
       <div class="form__section form__section--amount">
