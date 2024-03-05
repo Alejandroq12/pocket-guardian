@@ -29,7 +29,10 @@
 .signup_page__title,
 .forgot_password_title,
 .resend_confirmation_password__title,
-.change_password__title {
+.change_password__title,
+.categories_form,
+.transactions_form,
+.transactions_form--diferent-groups {
   color: var(--white-text-color);
   font-size: calc(var(--font-size-base) + 18px);
   position: relative;
@@ -37,7 +40,10 @@
 
 .forgot_password_title,
 .resend_confirmation_password__title,
-.change_password__title {
+.change_password__title,
+.categories_form,
+.transactions_form,
+.transactions_form--diferent-groups {
   font-size: calc(var(--font-size-base) + 6px);
   word-wrap: break-word;
   margin: 0 auto;
@@ -208,7 +214,10 @@
 
   .forgot_password_title,
   .resend_confirmation_password__title,
-  .change_password__title {
+  .change_password__title,
+  .categories_form,
+  .transactions_form,
+  .transactions_form--diferent-groups {
     font-size: calc(var(--font-size-base) + 7px);
     width: 62%;
   }
@@ -237,7 +246,10 @@
 
   .forgot_password_title,
   .resend_confirmation_password__title,
-  .change_password__title {
+  .change_password__title,
+  .categories_form,
+  .transactions_form,
+  .transactions_form--diferent-groups {
     font-size: calc(var(--font-size-base) + 15px);
     word-wrap: break-word;
     margin: 0 auto;
@@ -304,7 +316,10 @@
 
   .forgot_password_title,
   .resend_confirmation_password__title,
-  .change_password__title {
+  .change_password__title,
+  .categories_form,
+  .transactions_form,
+  .transactions_form--diferent-groups {
     font-size: calc(var(--font-size-base) + 18px);
   }
 
@@ -371,7 +386,10 @@
   .signup_page__title,
   .forgot_password_title,
   .resend_confirmation_password__title,
-  .change_password__title {
+  .change_password__title,
+  .categories_form,
+  .transactions_form,
+  .transactions_form--diferent-groups {
     font-size: calc(var(--font-size-base) + 24px);
   }
 
@@ -432,7 +450,10 @@
   .signup_page__title,
   .forgot_password_title,
   .resend_confirmation_password__title,
-  .change_password__title {
+  .change_password__title,
+  .categories_form,
+  .transactions_form,
+  .transactions_form--diferent-groups {
     font-size: calc(var(--font-size-base) + 24px);
   }
 
@@ -489,7 +510,10 @@
   .signup_page__title,
   .forgot_password_title,
   .resend_confirmation_password__title,
-  .change_password__title {
+  .change_password__title,
+  .categories_form,
+  .transactions_form,
+  .transactions_form--diferent-groups {
     font-size: calc(var(--font-size-base) + 25px);
   }
 
@@ -537,7 +561,10 @@
   .signup_page__title,
   .forgot_password_title,
   .resend_confirmation_password__title,
-  .change_password__title {
+  .change_password__title,
+  .categories_form,
+  .transactions_form,
+  .transactions_form--diferent-groups {
     font-size: calc(var(--font-size-base) + 26px);
   }
 
