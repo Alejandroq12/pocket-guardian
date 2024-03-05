@@ -1,4 +1,5 @@
 <div class="form--movement">
+
   <% if @movement.errors.any? %>
     <div id="error_explanation" class="form__errors">
       <h2 class="form__errors-title"><%= pluralize(@movement.errors.count, "error") %> prohibited this transaction from being saved:</h2>
@@ -14,12 +15,12 @@
     <%= form_with(model: @movement, url: user_group_movements_path(current_user, @group), local: true, html: { class: 'form__body' }) do |form| %>
       <div class="form__section form__section--name">
         <%= form.label :name, class: 'form__label' %>
-        <%= form.text_field :name, class: 'form__text-field' %>
+        <%= form.text_field :name, class: 'form__text-field', required: true %>
       </div>
   
       <div class="form__section form__section--amount">
         <%= form.label :amount, class: 'form__label' %>
-        <%= form.number_field :amount, class: 'form__number-field' %>
+        <%= form.number_field :amount, class: 'form__number-field', required: true %>
       </div>
       <%= form.submit "Add a transaction", class: 'form__submit-button' %>
     <% end %>
@@ -27,16 +28,16 @@
     <%= form_with(model: @movement, local: true, html: { class: 'form__body' }) do |form| %>
       <div class="form__section form__section--group">
         <%= form.label :group_id, class: 'form__label' %>
-        <%= form.collection_select :group_id, @groups, :id, :name, { include_blank: true }, { class: 'form__select' } %>
+    <%= form.collection_select :group_id, @groups, :id, :name, { include_blank: 'Please select a group' }, { required: true, class: 'form__select' } %>
       </div>
       <div class="form__section form__section--name">
         <%= form.label :name, class: 'form__label' %>
-        <%= form.text_field :name, class: 'form__text-field' %>
+        <%= form.text_field :name, class: 'form__text-field', required: true %>
       </div>
   
       <div class="form__section form__section--amount">
         <%= form.label :amount, class: 'form__label' %>
-        <%= form.number_field :amount, class: 'form__number-field' %>
+        <%= form.number_field :amount, class: 'form__number-field', required: true %>
       </div>
       <%= form.submit "Add a transaction", class: 'form__submit-button' %>
     <% end %>
